@@ -149,41 +149,54 @@ ListLinePlot[CompleteEnvelope[Abs[input]]]
 
 
 (* ::Section:: *)
+(*Quadratic threshold to remove glitches near zero*)
+
+
+qThreshold3[x_,h_]:=Module[{xx},
+	xx = x-2h;
+	If[xx<-h,0,If[xx>h,xx,(xx+h)^2/(4h)]]
+]
+Plot[qThreshold3[x,0.05],{x,0,1}]
+
+
+(* ::Section:: *)
 (*Release Envelope*)
 
 
-ReleaseEnvelope[X_]:=Module[{fMultiplier,Q,attackFc,releaseFc,sampleRate,releaseFilteredSlow,releaseFilteredFast,completeEnvelopeFast,fastFc,output},
+ReleaseEnvelope[X_]:=Module[{fMultiplier,Q,attackFcFast,releaseFcSlow,releaseFcFast,sampleRate,releaseFilteredSlow,releaseFilteredFast,completeEnvelopeFast,output},
 sampleRate = 48000;
-attackFc = 20000;
-releaseFc = 1.5;
+attackFcFast = 200;
+releaseFcFast = 1.5;
+releaseFcSlow = releaseFcFast/2;
 Q=0.5;
 fMultiplier = 2.7;
-fastFc = 10;
 
 releaseFilteredFast = 
 	releaseOnlySVF[
 	releaseOnlySVF[
 	releaseOnlySVF[
 		X,
-	releaseFc fMultiplier,Q,sampleRate],
-	releaseFc fMultiplier,Q,sampleRate],
-	releaseFc fMultiplier,Q,sampleRate];
+	releaseFcFast fMultiplier,Q,sampleRate],
+	releaseFcFast fMultiplier,Q,sampleRate],
+	releaseFcFast fMultiplier,Q,sampleRate];
 	
 completeEnvelopeFast = 
 	attackOnlySVF[
 	attackOnlySVF[
 	attackOnlySVF[
 		releaseFilteredFast,
-	attackFc fMultiplier,Q,sampleRate],
-	attackFc fMultiplier,Q,sampleRate],
-	attackFc fMultiplier,Q,sampleRate]; 
+	attackFcFast fMultiplier,Q,sampleRate],
+	attackFcFast fMultiplier,Q,sampleRate],
+	attackFcFast fMultiplier,Q,sampleRate]; 
 	
 releaseFilteredSlow =
 	releaseOnlySVF[
 		completeEnvelopeFast,
-	releaseFc fMultiplier,Q,sampleRate]; 
+	releaseFcSlow fMultiplier,Q,sampleRate]; 
 
-{X,releaseFilteredSlow,completeEnvelopeFast,releaseFilteredFast,releaseFilteredSlow - completeEnvelopeFast}
+	output = releaseFilteredSlow - completeEnvelopeFast;
+(*{X,releaseFilteredSlow,completeEnvelopeFast,releaseFilteredFast,output,qThreshold3[#,0.05]&/@output}*)
+{output,qThreshold3[#,0.01]&/@output}
 ]
 
 
@@ -196,17 +209,17 @@ length = 2^16;
 input = Table[Sin[151 2\[Pi] N[x]]+Sin[20 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
 input[[2Round[Length[input]/4];;3Round[Length[input]/4]]]=0;
 
-ListLinePlot[ReleaseEnvelope[Abs[input]]]
+ListLinePlot[ReleaseEnvelope[Abs[input]],PlotRange->All]
 
 input = Table[E^(x)Sin[20 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
 input[[2Round[Length[input]/4];;3Round[Length[input]/4]]]=0;
 
-ListLinePlot[ReleaseEnvelope[Abs[input]]]
+ListLinePlot[ReleaseEnvelope[Abs[input]],PlotRange->All]
 
 input = Table[E^(-x)Sin[20 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
 input[[2Round[Length[input]/4];;3Round[Length[input]/4]]]=0;
 
-ListLinePlot[ReleaseEnvelope[Abs[input]]]
+ListLinePlot[ReleaseEnvelope[Abs[input]],PlotRange->All]
 
 
 

@@ -35,4 +35,4 @@ qThreshold3[x_,h_]:=Module[{xx},
 	xx = x-2h;
 	If[xx<-h,0,If[xx>h,xx,(xx+h)^2/(4h)]]
 ]
-Plot[qThreshold3[x,0.1],{x,0,1}]
+Plot[qThreshold3[x,0.01],{x,0,1}]
