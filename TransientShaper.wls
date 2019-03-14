@@ -47,7 +47,7 @@ output
 
 
 (* ::Section:: *)
-(*BottomUpReleaseFilter (anything can push it down but it filters back up)*)
+(*BottomUpReleaseFilter (immediately down; slow up)*)
 
 
 bottomReleaseSVF[X_,fc_,Q_,sr_]:=Module[{prevY,i,ic1, ic2, a1, a2, a3, v1, v2, v3,g,k,attackMode,output},
@@ -197,7 +197,7 @@ output
 (*Lowpass State Variable Filter*)
 
 
-lowpassSVF[X_,fc_,Q_,sr_]:=Module[{i,ic1, ic2, a1, a2, a3, v1, v2, v3,g,k,output},
+lowpassSVF[X_,fc_,Q_]:=Module[{sr,i,ic1, ic2, a1, a2, a3, v1, v2, v3,g,k,output},
 output =X;
 g = Tan[\[Pi] fc /sr];
 k = 1/Q;
@@ -205,6 +205,7 @@ a1 = 1/(1+g*(g+k));
 a2 = g*a1;
 a3 = g*a2;
 ic1 = ic2 = v1 = v2 = v3 = 0;
+sr = 48000;
 
 For[i=1, i<=Length[X], i++,
 (* process svf *)
@@ -444,36 +445,15 @@ ListLinePlot[ReleaseEnvelope[Abs[input]],PlotRange->All]
 (*Alternative release envelope method (attack filtering AFTER subtraction)*)
 
 
-ReleaseEnvelope2[X_]:=Module[{Q,dynamicSmoothingFc,dynamicSmoothingSensitivity,dynamicSmoothedOutput,attackFcSmoothing,releaseFcSlow,releaseFcSmoothing,sampleRate,releaseFilteredSlow,releaseFilteredFast,slowFastDifference,attackFilteredDifference},
+ReleaseEnvelope2[X_]:=Module[{Q,dynamicSmoothingFc,dynamicSmoothingSensitivity,fixedSmoothingFc,fixedFrequencySmoothingOutput,dynamicSmoothedOutput,attackFcSmoothing,releaseFcSlow,releaseFcSmoothing,sampleRate,releaseFilteredSlow,releaseFilteredFast,slowFastDifference,attackFilteredDifference},
 sampleRate = 48000;
 releaseFcSlow = ARTimeToCutoffFrequency[1/2,3];
 releaseFcSmoothing = ARTimeToCutoffFrequency[1/2,3];
-attackFcSmoothing = ARTimeToCutoffFrequency[1/2,3];
+attackFcSmoothing = ARTimeToCutoffFrequency[1/4,3];
+fixedSmoothingFc = ARTimeToCutoffFrequency[1/4,3];
 dynamicSmoothingFc = ARTimeToCutoffFrequency[1/(2^(-2)),1];
 dynamicSmoothingSensitivity = 2^(-4);
 Q=0.5;
-
-(*
-releaseFilteredFast = 
-	releaseOnlySVF[
-	releaseOnlySVF[
-	releaseOnlySVF[
-		X,
-	releaseFcFast,Q,sampleRate],
-	releaseFcFast,Q,sampleRate],
-	releaseFcFast,Q,sampleRate];
-	*)
-	
-	(*
-completeEnvelopeFast = 
-	attackOnlySVF[
-	attackOnlySVF[
-	attackOnlySVF[
-		releaseFilteredFast,
-	attackFcFast,Q,sampleRate],
-	attackFcFast,Q,sampleRate],
-	attackFcFast,Q,sampleRate]; 
-	*)
 	
 releaseFilteredSlow =
 	releaseOnlySVF[
@@ -487,16 +467,23 @@ releaseFilteredSlow =
 slowFastDifference = releaseFilteredSlow - X;
 
 attackFilteredDifference = 
+	bottomAttackSVF[
+	bottomAttackSVF[
+	bottomAttackSVF[
 	bottomReleaseSVF[
 	bottomReleaseSVF[
 	bottomReleaseSVF[
 		slowFastDifference,
 	releaseFcSmoothing,Q,sampleRate],
 	releaseFcSmoothing,Q,sampleRate],
-	releaseFcSmoothing,Q,sampleRate]; 
+	releaseFcSmoothing,Q,sampleRate],
+	attackFcSmoothing,Q,sampleRate],
+	attackFcSmoothing,Q,sampleRate],
+	attackFcSmoothing,Q,sampleRate]; 
 
 dynamicSmoothedOutput = DynamicSmoothing[attackFilteredDifference,dynamicSmoothingFc,dynamicSmoothingSensitivity];	
-Join[{X,releaseFilteredSlow,slowFastDifference,attackFilteredDifference,dynamicSmoothedOutput}]
+fixedFrequencySmoothingOutput = lowpassSVF[attackFilteredDifference,fixedSmoothingFc,0.5];
+Join[{X,releaseFilteredSlow,slowFastDifference,attackFilteredDifference,dynamicSmoothedOutput,fixedFrequencySmoothingOutput}]
 (*{output,qThreshold3[#,0.01]&/@output}*)
 ]
 
@@ -507,7 +494,7 @@ Join[{X,releaseFilteredSlow,slowFastDifference,attackFilteredDifference,dynamicS
 
 sampleRate = 48000;
 length = 2^16;
-input = Table[Sin[151 2\[Pi] N[x]]+Sin[20 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
+input = Table[Sin[10 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
 input[[2Round[Length[input]/4];;3Round[Length[input]/4]]]=0;
 
 ListLinePlot[ReleaseEnvelope2[Abs[input]],PlotRange->All]
