@@ -164,7 +164,7 @@ If[X[[i]] < prevY,
 (* attack mode: filter *)
 (* if this is the first sample of the attack, switch to attack mode *)
 If[!attackMode,
-attackMode = True; ic1 = 0*0.5*(prevY-prevY2)*gInv; ic2 = prevY;
+attackMode = True; ic1 = 0.5*(prevY-prevY2)*gInv; ic2 = prevY;
 ];
 (* process svf *)
 v3 =X[[i]]- ic2;
@@ -186,7 +186,7 @@ output[[i]] = X[[i]];
 ];
 
 prevY2 = prevY;
-prevY= output[[i]];
+prevY = output[[i]];
 ];
 
 output
@@ -264,7 +264,6 @@ qThreshold3[x_,h_]:=Module[{xx},
 	xx = x-2h;
 	If[xx<-h,0,If[xx>h,xx,(xx+h)^2/(4h)]]
 ]
-Plot[qThreshold3[x,0.05],{x,0,1}]
 
 
 (* ::Section:: *)
@@ -449,7 +448,7 @@ ReleaseEnvelope2[X_]:=Module[{Q,dynamicSmoothingFc,dynamicSmoothingSensitivity,f
 sampleRate = 48000;
 releaseFcSlow = ARTimeToCutoffFrequency[1/2,3];
 releaseFcSmoothing = ARTimeToCutoffFrequency[1/2,3];
-attackFcSmoothing = ARTimeToCutoffFrequency[1/4,3];
+attackFcSmoothing = ARTimeToCutoffFrequency[1/2,3];
 fixedSmoothingFc = ARTimeToCutoffFrequency[1/4,3];
 dynamicSmoothingFc = ARTimeToCutoffFrequency[1/(2^(-2)),1];
 dynamicSmoothingSensitivity = 2^(-4);
@@ -481,9 +480,9 @@ attackFilteredDifference =
 	attackFcSmoothing,Q,sampleRate],
 	attackFcSmoothing,Q,sampleRate]; 
 
-dynamicSmoothedOutput = DynamicSmoothing[attackFilteredDifference,dynamicSmoothingFc,dynamicSmoothingSensitivity];	
-fixedFrequencySmoothingOutput = lowpassSVF[attackFilteredDifference,fixedSmoothingFc,0.5];
-Join[{X,releaseFilteredSlow,slowFastDifference,attackFilteredDifference,dynamicSmoothedOutput,fixedFrequencySmoothingOutput}]
+(*dynamicSmoothedOutput = DynamicSmoothing[attackFilteredDifference,dynamicSmoothingFc,dynamicSmoothingSensitivity];*)	
+(*fixedFrequencySmoothingOutput = lowpassSVF[attackFilteredDifference,fixedSmoothingFc,0.5];*)
+Join[{X,releaseFilteredSlow,slowFastDifference,attackFilteredDifference}]
 (*{output,qThreshold3[#,0.01]&/@output}*)
 ]
 
@@ -494,7 +493,7 @@ Join[{X,releaseFilteredSlow,slowFastDifference,attackFilteredDifference,dynamicS
 
 sampleRate = 48000;
 length = 2^16;
-input = Table[Sin[10 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
+input = Table[Sin[133 2\[Pi] N[x]]+Sin[20 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
 input[[2Round[Length[input]/4];;3Round[Length[input]/4]]]=0;
 
 ListLinePlot[ReleaseEnvelope2[Abs[input]],PlotRange->All]
@@ -510,6 +509,79 @@ input[[2Round[Length[input]/4];;3Round[Length[input]/4]]]=0;
 ListLinePlot[ReleaseEnvelope2[Abs[input]],PlotRange->All]
 
 
+
+
+
+
+
+
+(* ::Section:: *)
+(*Attack Envelope*)
+
+
+AttackEnvelope[X_]:=Module[{numStages,fMultiplier,Q,smoothingFc, attackSlowFc,releaseFc,sampleRate,attackFilteredSlow, attackFilteredFast,output, smoothedOutput},
+sampleRate = 48000;
+numStages = 3;
+releaseFc = ARTimeToCutoffFrequency[1/2,numStages];
+attackSlowFc = ARTimeToCutoffFrequency[1/20,numStages];
+smoothingFc = ARTimeToCutoffFrequency[1/5,numStages];
+Q=0.5;
+
+attackFilteredFast =
+releaseOnlySVF[
+releaseOnlySVF[
+releaseOnlySVF[
+X,
+releaseFc ,Q,sampleRate],
+releaseFc ,Q,sampleRate],
+releaseFc ,Q,sampleRate]; 
+
+attackFilteredSlow =
+attackOnlySVF[
+attackOnlySVF[
+attackOnlySVF[
+attackFilteredFast,
+attackSlowFc,Q,sampleRate],
+attackSlowFc,Q,sampleRate],
+attackSlowFc,Q,sampleRate]; 
+
+output =(attackFilteredFast - attackFilteredSlow);
+
+smoothedOutput = 
+releaseOnlySVF[
+releaseOnlySVF[
+releaseOnlySVF[
+output,
+smoothingFc,Q,sampleRate],
+smoothingFc,Q,sampleRate],
+smoothingFc,Q,sampleRate];
+
+{X,attackFilteredFast,attackFilteredSlow,output,smoothedOutput}
+]
+
+
+(* ::Subsection:: *)
+(*Test Attack Envelope*)
+
+
+sampleRate = 48000;
+length = 2^16;
+input = Table[Sin[155 2 \[Pi] N[x]]Sin[30 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
+input[[2Round[Length[input]/4];;3Round[Length[input]/4]]]=0;
+
+ AA1 = AttackEnvelope[Abs[input]];
+ ListLinePlot[AA1] 
+ ListLinePlot[AA1,PlotRange->{0,0.1}] 
+
+input = Table[E^(x) Sin[15 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
+input[[2Round[Length[input]/4];;3Round[Length[input]/4]]]=0;
+
+ ListLinePlot[AttackEnvelope[Abs[input]]] 
+
+input = Table[E^(-x) Sin[15 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
+input[[2Round[Length[input]/4];;3Round[Length[input]/4]]]=0;
+
+ ListLinePlot[AttackEnvelope[Abs[input]]] 
 
 
 
