@@ -227,22 +227,34 @@ output
 (*Dynamic Smoothing Filter*)
 
 
+DSControlCurve[x_]:=1-(x-1)^2
+
 DynamicSmoothing[X_,fc_,sensitivity_]:=Module[{i,sr,bandz,low1,low2,low1z,low2z,g0,gc,g,output},
 	sr = 48000;
 	gc = Tan[\[Pi] fc / sr];
 	g0 = 2 gc / (1 + gc);
 	output = X;
 	low1z = low2z = low1 = low2 = 0;
-
+(*
 	For[i=1,i<=Length[X],i++,
 		low1z = low1;
 		low2z = low2;
 		bandz = low2z - low1z;
-		g = Min[g0 + sensitivity*Abs[bandz],1.0]; 
+		g = Min[DSControlCurve[g0 + sensitivity*Abs[bandz]],1.0]; 
 		low2 = low2z + g*(low1z-low2z);
 		low1 = N[low1z] + g*(X[[i]]-low1z); 
 		output[[i]] = low2z;
+	]; *)
+	
+	
+		For[i=1,i<=Length[X],i++,
+		bandz = low2z - low1z;
+		g = Min[DSControlCurve[g0 + sensitivity*Abs[bandz]],1.0]; 
+		low2z = low2z + g*(low1z-low2z);
+		low1z = N[low1z] + g*(X[[i]]-low1z); 
+		output[[i]] = low2z;
 	]; 
+	
 	
 	output
 ]
@@ -519,19 +531,26 @@ ListLinePlot[ReleaseEnvelope2[Abs[input]],PlotRange->All]
 (*Attack Envelope*)
 
 
-AttackEnvelope[X_]:=Module[{numStages,fMultiplier,Q,smoothingFc, attackSlowFc,releaseFc,sampleRate,attackFilteredSlow, attackFilteredFast,output, smoothedOutput},
+AttackEnvelope[X_]:=Module[{numStages,fMultiplier,Q,smoothingFc, attackSmoothingFc, attackSlowFc,releaseFc,sampleRate,attackFilteredSlow, attackFilteredFast,output, smoothedOutput, attackSmoothedOutput},
 sampleRate = 48000;
 numStages = 3;
-releaseFc = ARTimeToCutoffFrequency[1/2,numStages];
+releaseFc = ARTimeToCutoffFrequency[1/2,numStages*2];
 attackSlowFc = ARTimeToCutoffFrequency[1/20,numStages];
 smoothingFc = ARTimeToCutoffFrequency[1/5,numStages];
+attackSmoothingFc = ARTimeToCutoffFrequency[1/100,numStages];
 Q=0.5;
 
 attackFilteredFast =
 releaseOnlySVF[
 releaseOnlySVF[
 releaseOnlySVF[
+releaseOnlySVF[
+releaseOnlySVF[
+releaseOnlySVF[
 X,
+releaseFc ,Q,sampleRate],
+releaseFc ,Q,sampleRate],
+releaseFc ,Q,sampleRate],
 releaseFc ,Q,sampleRate],
 releaseFc ,Q,sampleRate],
 releaseFc ,Q,sampleRate]; 
@@ -556,7 +575,20 @@ smoothingFc,Q,sampleRate],
 smoothingFc,Q,sampleRate],
 smoothingFc,Q,sampleRate];
 
-{X,attackFilteredFast,attackFilteredSlow,output,smoothedOutput}
+(*
+attackSmoothedOutput = 
+attackOnlySVF[
+attackOnlySVF[
+attackOnlySVF[
+smoothedOutput,
+attackSmoothingFc,Q,sampleRate],
+attackSmoothingFc,Q,sampleRate],
+attackSmoothingFc,Q,sampleRate];
+*)
+
+attackSmoothedOutput = DynamicSmoothing[smoothedOutput,1.0,2^(-3)];
+
+{X,attackFilteredFast,attackFilteredSlow,output,smoothedOutput,attackSmoothedOutput}
 ]
 
 
@@ -566,7 +598,7 @@ smoothingFc,Q,sampleRate];
 
 sampleRate = 48000;
 length = 2^16;
-input = Table[Sin[155 2 \[Pi] N[x]]Sin[30 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
+input = Table[Sin[155 2 \[Pi] N[x]]+Sin[30 2\[Pi] N[x]],{x,0,length/sampleRate,1/sampleRate}];
 input[[2Round[Length[input]/4];;3Round[Length[input]/4]]]=0;
 
  AA1 = AttackEnvelope[Abs[input]];
