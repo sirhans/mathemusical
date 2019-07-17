@@ -1,0 +1,3733 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    155590,       3725]
+NotebookOptionsPosition[    149185,       3599]
+NotebookOutlinePosition[    149539,       3615]
+CellTagsIndexPosition[    149496,       3612]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["With spaces", "Section",
+ CellChangeTimes->{{3.764757633204747*^9, 
+  3.764757636232069*^9}},ExpressionUUID->"04d37057-73e4-4f6f-9ac0-\
+be8861235d19"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"complementaryNoteList", "[", "l_", "]"}], ":=", 
+  RowBox[{"Complement", "[", 
+   RowBox[{
+    RowBox[{"Range", "[", "12", "]"}], ",", "l"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"radialLine", "[", 
+   RowBox[{"p_", ",", "innerRadius_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{"Line", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "/", "innerRadius"}], ",", 
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "*", "innerRadius"}]}], "}"}], 
+    "]"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.13"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lineThickness", " ", "=", " ", "0.015"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"circle1", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Thickness", "->", "lineThickness"}], ",", 
+    RowBox[{"Circle", "[", 
+     RowBox[{"centre", ",", "radius"}], "]"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"circle1", "[", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"White", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"blackDotRadius", "+", 
+            RowBox[{"2", "lineThickness"}]}]}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"White", ",", 
+          RowBox[{"Thickness", "\[Rule]", 
+           RowBox[{"lineThickness", "*", "3"}]}], ",", 
+          RowBox[{"radialLine", "[", 
+           RowBox[{"#", ",", "0.94"}], "]"}]}], "}"}], "&"}], "/@", " ", 
+       RowBox[{
+        RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Thickness", "\[Rule]", "lineThickness"}], ",", 
+          RowBox[{"radialLine", "[", 
+           RowBox[{"#", ",", "0.94"}], "]"}]}], "}"}], "&"}], "/@", " ", 
+       RowBox[{
+        RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}], 
+      "}"}]}], "}"}], "\[IndentingNewLine]", "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764478352245077*^9, 3.764478494831164*^9}, {
+  3.76447853699933*^9, 3.7644785410702353`*^9}, {3.764478635484473*^9, 
+  3.764478743194165*^9}, {3.76447878420253*^9, 3.764478818976335*^9}, {
+  3.764757303905363*^9, 3.76475730669281*^9}, {3.764757353090581*^9, 
+  3.764757486777573*^9}, {3.764757521080278*^9, 3.7647575502955503`*^9}},
+ CellLabel->"In[96]:=",ExpressionUUID->"a7a32f35-e95b-4c63-b764-98e0cb257551"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Thickness[0.015], CircleBox[{0, 0}]}, 
+   {GrayLevel[1], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.16], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.16], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.16], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.16], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.16]}, 
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.13], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.13], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 
+     0.13]}, {
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[{{1.0275806662649662`, -0.27533940968353265`}, {
+      0.907970276711724, -0.24328990239636947`}}]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[{{0.7522412565814335, 0.7522412565814335}, {0.6646803743153545, 
+      0.6646803743153545}}]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[{{0.27533940968353265`, 1.0275806662649662`}, {
+      0.24328990239636947`, 0.907970276711724}}]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[{{-0.7522412565814335, 0.7522412565814335}, {-0.6646803743153545,
+       0.6646803743153545}}]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[{{-1.0275806662649662`, 
+      0.27533940968353265`}, {-0.907970276711724, 0.24328990239636947`}}]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[{{-1.0275806662649662`, -0.27533940968353265`}, \
+{-0.907970276711724, -0.24328990239636947`}}]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[{{-0.27533940968353265`, -1.0275806662649662`}, \
+{-0.24328990239636947`, -0.907970276711724}}]}}, {
+    {Thickness[0.015], 
+     LineBox[{{1.0275806662649662`, -0.27533940968353265`}, {
+      0.907970276711724, -0.24328990239636947`}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{0.7522412565814335, 0.7522412565814335}, {0.6646803743153545, 
+      0.6646803743153545}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{0.27533940968353265`, 1.0275806662649662`}, {
+      0.24328990239636947`, 0.907970276711724}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-0.7522412565814335, 0.7522412565814335}, {-0.6646803743153545,
+       0.6646803743153545}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-1.0275806662649662`, 
+      0.27533940968353265`}, {-0.907970276711724, 0.24328990239636947`}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-1.0275806662649662`, -0.27533940968353265`}, \
+{-0.907970276711724, -0.24328990239636947`}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-0.27533940968353265`, -1.0275806662649662`}, \
+{-0.24328990239636947`, -0.907970276711724}}]}}}]], "Output",
+ CellChangeTimes->{{3.764757280319805*^9, 3.764757307553905*^9}, 
+   3.764757378188566*^9, {3.7647574209679117`*^9, 3.764757427324058*^9}, {
+   3.764757465365876*^9, 3.764757488482832*^9}, {3.764757532199127*^9, 
+   3.764757550829082*^9}},
+ CellLabel->
+  "Out[103]=",ExpressionUUID->"8fb4ee06-6272-4edd-a8f7-e4b2734d82a6"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Without spaces", "Section",
+ CellChangeTimes->{{3.764757640742956*^9, 
+  3.764757644568346*^9}},ExpressionUUID->"8caa8aa8-b73f-4be1-a5ae-\
+a0001dd7a0a4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"complementaryNoteList", "[", "l_", "]"}], ":=", 
+  RowBox[{"Complement", "[", 
+   RowBox[{
+    RowBox[{"Range", "[", "12", "]"}], ",", "l"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"radialLine", "[", 
+   RowBox[{"p_", ",", "innerRadius_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{"Line", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "/", "innerRadius"}], ",", 
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "*", "innerRadius"}]}], "}"}], 
+    "]"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.13"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lineThickness", " ", "=", " ", "0.015"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"circle1", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Thickness", "->", "lineThickness"}], ",", 
+    RowBox[{"Circle", "[", 
+     RowBox[{"centre", ",", "radius"}], "]"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"circle1", "[", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Thickness", "\[Rule]", "lineThickness"}], ",", 
+          RowBox[{"radialLine", "[", 
+           RowBox[{"#", ",", "0.94"}], "]"}]}], "}"}], "&"}], "/@", " ", 
+       RowBox[{
+        RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}], 
+      "}"}]}], "}"}], "\[IndentingNewLine]", "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764478352245077*^9, 3.764478494831164*^9}, {
+  3.76447853699933*^9, 3.7644785410702353`*^9}, {3.764478635484473*^9, 
+  3.764478743194165*^9}, {3.76447878420253*^9, 3.764478818976335*^9}, {
+  3.764757303905363*^9, 3.76475730669281*^9}, {3.764757353090581*^9, 
+  3.764757486777573*^9}, {3.764757521080278*^9, 3.7647575502955503`*^9}, {
+  3.764757666536248*^9, 3.764757675680344*^9}},
+ CellLabel->
+  "In[112]:=",ExpressionUUID->"e750dbd9-6f0b-4994-9933-5da6cfe3ef3b"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Thickness[0.015], CircleBox[{0, 0}]}, 
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.13], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.13], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 
+     0.13]}, {
+    {Thickness[0.015], 
+     LineBox[{{1.0275806662649662`, -0.27533940968353265`}, {
+      0.907970276711724, -0.24328990239636947`}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{0.7522412565814335, 0.7522412565814335}, {0.6646803743153545, 
+      0.6646803743153545}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{0.27533940968353265`, 1.0275806662649662`}, {
+      0.24328990239636947`, 0.907970276711724}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-0.7522412565814335, 0.7522412565814335}, {-0.6646803743153545,
+       0.6646803743153545}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-1.0275806662649662`, 
+      0.27533940968353265`}, {-0.907970276711724, 0.24328990239636947`}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-1.0275806662649662`, -0.27533940968353265`}, \
+{-0.907970276711724, -0.24328990239636947`}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-0.27533940968353265`, -1.0275806662649662`}, \
+{-0.24328990239636947`, -0.907970276711724}}]}}}]], "Output",
+ CellChangeTimes->{{3.7647576496336946`*^9, 3.764757677637989*^9}},
+ CellLabel->
+  "Out[119]=",ExpressionUUID->"85e000f8-942e-4676-a008-189614fdefb7"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Ticks on the inside only", "Section",
+ CellChangeTimes->{{3.764757689524293*^9, 3.764757698911718*^9}, {
+  3.76475786064618*^9, 
+  3.764757861332452*^9}},ExpressionUUID->"b9f289aa-40d9-4ca3-a483-\
+453a63d2ecd3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"complementaryNoteList", "[", "l_", "]"}], ":=", 
+  RowBox[{"Complement", "[", 
+   RowBox[{
+    RowBox[{"Range", "[", "12", "]"}], ",", "l"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"radialLine", "[", 
+   RowBox[{"p_", ",", "innerRadius_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{"Line", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "*", "innerRadius"}], ",", 
+      RowBox[{"Normalize", "[", "p", "]"}]}], "}"}], "]"}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.13"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lineThickness", " ", "=", " ", "0.015"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"circle1", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Thickness", "->", "lineThickness"}], ",", 
+    RowBox[{"Circle", "[", 
+     RowBox[{"centre", ",", "radius"}], "]"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"circle1", "[", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Thickness", "\[Rule]", "lineThickness"}], ",", 
+          RowBox[{"radialLine", "[", 
+           RowBox[{"#", ",", "0.92"}], "]"}]}], "}"}], "&"}], "/@", " ", 
+       RowBox[{
+        RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}], 
+      "}"}]}], "}"}], "\[IndentingNewLine]", "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764478352245077*^9, 3.764478494831164*^9}, {
+  3.76447853699933*^9, 3.7644785410702353`*^9}, {3.764478635484473*^9, 
+  3.764478743194165*^9}, {3.76447878420253*^9, 3.764478818976335*^9}, {
+  3.764757303905363*^9, 3.76475730669281*^9}, {3.764757353090581*^9, 
+  3.764757486777573*^9}, {3.764757521080278*^9, 3.7647575502955503`*^9}, {
+  3.764757666536248*^9, 3.764757675680344*^9}, {3.7647577127404346`*^9, 
+  3.764757744633342*^9}},
+ CellLabel->
+  "In[136]:=",ExpressionUUID->"8ec62d23-7876-456b-973e-5320cc3894cc"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Thickness[0.015], CircleBox[{0, 0}]}, 
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.13], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.13], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 
+     0.13]}, {
+    {Thickness[0.015], 
+     LineBox[NCache[{{0.8886517601859427, -0.23811352149431908`}, {
+        Rational[1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[-1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2]}}, {{
+       0.8886517601859427, -0.23811352149431908`}, {
+       0.9659258262890682, -0.2588190451025207}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{0.6505382386916236, 0.6505382386916236}, {
+        2^Rational[-1, 2], 2^Rational[-1, 2]}}, {{0.6505382386916236, 
+       0.6505382386916236}, {0.7071067811865475, 0.7071067811865475}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{0.23811352149431908`, 0.8886517601859427}, {
+        Rational[1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2]}}, {{
+       0.23811352149431908`, 0.8886517601859427}, {0.2588190451025207, 
+       0.9659258262890682}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{-0.6505382386916236, 
+        0.6505382386916236}, {-2^Rational[-1, 2], 2^
+         Rational[-1, 2]}}, {{-0.6505382386916236, 
+       0.6505382386916236}, {-0.7071067811865475, 0.7071067811865475}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{-0.8886517601859427, 0.23811352149431908`}, {
+        Rational[-1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^
+          Rational[-1, 2]}}, {{-0.8886517601859427, 
+       0.23811352149431908`}, {-0.9659258262890682, 0.2588190451025207}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{-0.8886517601859427, -0.23811352149431908`}, {
+        Rational[-1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[-1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^
+          Rational[-1, 
+            2]}}, {{-0.8886517601859427, -0.23811352149431908`}, \
+{-0.9659258262890682, -0.2588190451025207}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{-0.23811352149431908`, -0.8886517601859427}, {
+        Rational[-1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[-1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^
+          Rational[-1, 
+            2]}}, {{-0.23811352149431908`, -0.8886517601859427}, \
+{-0.2588190451025207, -0.9659258262890682}}]]}}}]], "Output",
+ CellChangeTimes->{{3.764757714680387*^9, 3.764757744973063*^9}},
+ CellLabel->
+  "Out[143]=",ExpressionUUID->"65673dc9-eefd-46f0-8d80-995d17037836"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["With inside ticks and spaces", "Section",
+ CellChangeTimes->{{3.764757781900166*^9, 
+  3.764757795018561*^9}},ExpressionUUID->"95b190f1-2847-439f-83cd-\
+a6cf89f24c2e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"complementaryNoteList", "[", "l_", "]"}], ":=", 
+  RowBox[{"Complement", "[", 
+   RowBox[{
+    RowBox[{"Range", "[", "12", "]"}], ",", "l"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"radialLine", "[", 
+   RowBox[{"p_", ",", "innerRadius_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{"Line", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Normalize", "[", "p", "]"}], ",", 
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "*", "innerRadius"}]}], "}"}], 
+    "]"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.13"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lineThickness", " ", "=", " ", "0.015"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"circle1", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Thickness", "->", "lineThickness"}], ",", 
+    RowBox[{"Circle", "[", 
+     RowBox[{"centre", ",", "radius"}], "]"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"circle1", "[", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"White", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"blackDotRadius", "+", 
+            RowBox[{"2", "lineThickness"}]}]}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"White", ",", 
+          RowBox[{"Thickness", "\[Rule]", 
+           RowBox[{"lineThickness", "*", "3"}]}], ",", 
+          RowBox[{"radialLine", "[", 
+           RowBox[{"#", ",", "0.92"}], "]"}]}], "}"}], "&"}], "/@", " ", 
+       RowBox[{
+        RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Thickness", "\[Rule]", "lineThickness"}], ",", 
+          RowBox[{"radialLine", "[", 
+           RowBox[{"#", ",", "0.92"}], "]"}]}], "}"}], "&"}], "/@", " ", 
+       RowBox[{
+        RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}], 
+      "}"}]}], "}"}], "\[IndentingNewLine]", "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764478352245077*^9, 3.764478494831164*^9}, {
+  3.76447853699933*^9, 3.7644785410702353`*^9}, {3.764478635484473*^9, 
+  3.764478743194165*^9}, {3.76447878420253*^9, 3.764478818976335*^9}, {
+  3.764757303905363*^9, 3.76475730669281*^9}, {3.764757353090581*^9, 
+  3.764757486777573*^9}, {3.764757521080278*^9, 3.7647575502955503`*^9}, {
+  3.764757807772717*^9, 3.764757820978079*^9}},
+ CellLabel->
+  "In[176]:=",ExpressionUUID->"95b51e8c-fe2f-4246-a02e-cdb69b2dcb6c"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Thickness[0.015], CircleBox[{0, 0}]}, 
+   {GrayLevel[1], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.16], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.16], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.16], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.16], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.16]}, 
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.13], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.13], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 
+     0.13]}, {
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[NCache[{{
+        Rational[1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[-1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2]}, {
+        0.8886517601859427, -0.23811352149431908`}}, {{
+       0.9659258262890682, -0.2588190451025207}, {
+       0.8886517601859427, -0.23811352149431908`}}]]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[NCache[{{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+        0.6505382386916236, 0.6505382386916236}}, {{0.7071067811865475, 
+       0.7071067811865475}, {0.6505382386916236, 0.6505382386916236}}]]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[NCache[{{
+        Rational[1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2]}, {
+        0.23811352149431908`, 0.8886517601859427}}, {{0.2588190451025207, 
+       0.9659258262890682}, {0.23811352149431908`, 0.8886517601859427}}]]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[NCache[{{-2^Rational[-1, 2], 2^
+         Rational[-1, 2]}, {-0.6505382386916236, 
+        0.6505382386916236}}, {{-0.7071067811865475, 
+       0.7071067811865475}, {-0.6505382386916236, 0.6505382386916236}}]]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[NCache[{{
+        Rational[-1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^
+          Rational[-1, 2]}, {-0.8886517601859427, 
+        0.23811352149431908`}}, {{-0.9659258262890682, 
+       0.2588190451025207}, {-0.8886517601859427, 0.23811352149431908`}}]]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[NCache[{{
+        Rational[-1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[-1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^
+          Rational[-1, 
+            2]}, {-0.8886517601859427, -0.23811352149431908`}}, \
+{{-0.9659258262890682, -0.2588190451025207}, {-0.8886517601859427, \
+-0.23811352149431908`}}]]}, 
+    {GrayLevel[1], Thickness[0.045], 
+     LineBox[NCache[{{
+        Rational[-1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[-1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^
+          Rational[-1, 
+            2]}, {-0.23811352149431908`, -0.8886517601859427}}, \
+{{-0.2588190451025207, -0.9659258262890682}, {-0.23811352149431908`, \
+-0.8886517601859427}}]]}}, {
+    {Thickness[0.015], 
+     LineBox[NCache[{{
+        Rational[1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[-1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2]}, {
+        0.8886517601859427, -0.23811352149431908`}}, {{
+       0.9659258262890682, -0.2588190451025207}, {
+       0.8886517601859427, -0.23811352149431908`}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+        0.6505382386916236, 0.6505382386916236}}, {{0.7071067811865475, 
+       0.7071067811865475}, {0.6505382386916236, 0.6505382386916236}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{
+        Rational[1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2]}, {
+        0.23811352149431908`, 0.8886517601859427}}, {{0.2588190451025207, 
+       0.9659258262890682}, {0.23811352149431908`, 0.8886517601859427}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{-2^Rational[-1, 2], 2^
+         Rational[-1, 2]}, {-0.6505382386916236, 
+        0.6505382386916236}}, {{-0.7071067811865475, 
+       0.7071067811865475}, {-0.6505382386916236, 0.6505382386916236}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{
+        Rational[-1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^
+          Rational[-1, 2]}, {-0.8886517601859427, 
+        0.23811352149431908`}}, {{-0.9659258262890682, 
+       0.2588190451025207}, {-0.8886517601859427, 0.23811352149431908`}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{
+        Rational[-1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[-1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^
+          Rational[-1, 
+            2]}, {-0.8886517601859427, -0.23811352149431908`}}, \
+{{-0.9659258262890682, -0.2588190451025207}, {-0.8886517601859427, \
+-0.23811352149431908`}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{
+        Rational[-1, 2] (-1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^Rational[-1, 2], 
+         Rational[-1, 2] (1 + 
+          3^Rational[1, 2]) (
+           2 (Rational[1, 8] (-1 + 3^Rational[1, 2])^2 + 
+            Rational[1, 8] (1 + 3^Rational[1, 2])^2))^
+          Rational[-1, 
+            2]}, {-0.23811352149431908`, -0.8886517601859427}}, \
+{{-0.2588190451025207, -0.9659258262890682}, {-0.23811352149431908`, \
+-0.8886517601859427}}]]}}}]], "Output",
+ CellChangeTimes->{{3.764757799874976*^9, 3.764757821389957*^9}},
+ CellLabel->
+  "Out[183]=",ExpressionUUID->"f6ddcc53-e82b-4aa4-b94c-6d34227c2507"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Small empty circles instead of ticks", "Section",
+ CellChangeTimes->{{3.76475784234121*^9, 
+  3.764757856180045*^9}},ExpressionUUID->"cc206608-92ef-4a50-aa01-\
+e584b48aa6dc"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.125"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotRadius", " ", "=", " ", 
+   RowBox[{"blackDotRadius", " ", "*", " ", "0.45"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lineThickness", " ", "=", " ", "0.0125"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"circle1", "[", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"White", ",", 
+       RowBox[{"EdgeForm", "[", 
+        RowBox[{"Thickness", "[", "lineThickness", "]"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "whiteDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}]}], 
+      "}"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764477898293799*^9, 3.764477980443359*^9}, {
+  3.76475789996774*^9, 3.764758037186417*^9}},
+ CellLabel->
+  "In[263]:=",ExpressionUUID->"e37f91be-e066-41ed-b72b-f4a7bc1d92e1"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Thickness[0.0125], CircleBox[{0, 0}]}, 
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.125], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.125], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.125], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.125], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 
+     0.125]}, 
+   {GrayLevel[1], EdgeForm[Thickness[0.0125]], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+      0.9659258262890682, -0.2588190451025207}], 0.05625], 
+    DiskBox[NCache[{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+      0.7071067811865475, 0.7071067811865475}], 0.05625], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, 0.9659258262890682}], 0.05625], 
+    DiskBox[NCache[{-2^Rational[-1, 2], 2^
+       Rational[-1, 2]}, {-0.7071067811865475, 0.7071067811865475}], 0.05625],
+     DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.9659258262890682, 
+      0.2588190451025207}], 0.05625], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (-1 + 
+        3^Rational[1, 2])}, {-0.9659258262890682, -0.2588190451025207}], 
+     0.05625], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (1 + 
+        3^Rational[1, 2])}, {-0.2588190451025207, -0.9659258262890682}], 
+     0.05625]}}]], "Output",
+ CellChangeTimes->{{3.764757911772129*^9, 3.7647580375851107`*^9}},
+ CellLabel->
+  "Out[268]=",ExpressionUUID->"63a25ad1-0c0d-4348-8535-2f1abb1a7bf5"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Small empty circles with spaces", "Section",
+ CellChangeTimes->{{3.76475784234121*^9, 3.764757856180045*^9}, {
+  3.7647580494274473`*^9, 
+  3.76475805250902*^9}},ExpressionUUID->"e653c956-e7eb-4b48-b82e-\
+d60d13afd00e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.125"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotRadius", " ", "=", " ", 
+   RowBox[{"blackDotRadius", " ", "*", " ", "0.45"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lineThickness", " ", "=", " ", "0.0125"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"circle1", "[", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"White", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"blackDotRadius", "+", 
+            RowBox[{"2", "lineThickness"}]}]}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"White", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"whiteDotRadius", "+", 
+            RowBox[{"3", "*", "lineThickness"}]}]}], "]"}], "&"}], "/@", " ", 
+        
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}]}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"White", ",", 
+       RowBox[{"EdgeForm", "[", 
+        RowBox[{"Thickness", "[", "lineThickness", "]"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "whiteDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}]}], 
+      "}"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764477898293799*^9, 3.764477980443359*^9}, {
+   3.76475789996774*^9, 3.764758037186417*^9}, 3.764758100506054*^9, 
+   3.764758178830286*^9, {3.764758209217751*^9, 3.76475821028469*^9}, {
+   3.7647582433039837`*^9, 3.7647582892047157`*^9}},
+ CellLabel->
+  "In[293]:=",ExpressionUUID->"fefdbf8b-ad11-425a-a929-686881dc29e9"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Thickness[0.0125], CircleBox[{0, 0}]}, 
+   {GrayLevel[1], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.15], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.15], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.15]}, 
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.125], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.125], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.125], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.125], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 
+     0.125]}, 
+   {GrayLevel[1], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+      0.9659258262890682, -0.2588190451025207}], 0.09375], 
+    DiskBox[
+     NCache[{2^Rational[-1, 2], 2^Rational[-1, 2]}, {0.7071067811865475, 
+      0.7071067811865475}], 0.09375], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, 0.9659258262890682}], 0.09375], 
+    DiskBox[NCache[{-2^Rational[-1, 2], 2^
+       Rational[-1, 2]}, {-0.7071067811865475, 0.7071067811865475}], 0.09375],
+     DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.9659258262890682, 
+      0.2588190451025207}], 0.09375], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (-1 + 
+        3^Rational[1, 2])}, {-0.9659258262890682, -0.2588190451025207}], 
+     0.09375], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (1 + 
+        3^Rational[1, 2])}, {-0.2588190451025207, -0.9659258262890682}], 
+     0.09375]}, 
+   {GrayLevel[1], EdgeForm[Thickness[0.0125]], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+      0.9659258262890682, -0.2588190451025207}], 0.05625], 
+    DiskBox[NCache[{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+      0.7071067811865475, 0.7071067811865475}], 0.05625], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, 0.9659258262890682}], 0.05625], 
+    DiskBox[NCache[{-2^Rational[-1, 2], 2^
+       Rational[-1, 2]}, {-0.7071067811865475, 0.7071067811865475}], 0.05625],
+     DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.9659258262890682, 
+      0.2588190451025207}], 0.05625], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (-1 + 
+        3^Rational[1, 2])}, {-0.9659258262890682, -0.2588190451025207}], 
+     0.05625], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (1 + 
+        3^Rational[1, 2])}, {-0.2588190451025207, -0.9659258262890682}], 
+     0.05625]}}]], "Output",
+ CellChangeTimes->{{3.764757911772129*^9, 3.7647580375851107`*^9}, 
+   3.764758105125366*^9, 3.764758180149207*^9, 3.76475821088483*^9, {
+   3.7647582853217583`*^9, 3.764758289950164*^9}},
+ CellLabel->
+  "Out[298]=",ExpressionUUID->"373dc158-b358-4a10-b3b4-66e943fae3ee"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Older ideas", "Section",
+ CellChangeTimes->{{3.764757766274191*^9, 
+  3.764757771652124*^9}},ExpressionUUID->"8ddb7eba-9453-4a00-bd8e-\
+8862bee31025"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"circle12", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Thickness", "->", "0.01"}], ",", 
+      RowBox[{"Circle", "[", 
+       RowBox[{"centre", ",", "radius", ",", " ", "#"}], "]"}]}], "}"}], 
+    "&"}], "/@", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[Pi]", "/", "6"}], 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"n", " ", "+", " ", "1", " ", "-", " ", "0.2"}], ")"}], ",", 
+        
+        RowBox[{"(", 
+         RowBox[{"n", " ", "+", " ", "1", " ", "+", " ", "0.2"}], ")"}]}], 
+       "}"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "1", ",", "12"}], "}"}]}], "]"}]}]}], "\n", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Disk", "[", 
+        RowBox[{"#", ",", "0.1"}], "]"}], "&"}], "/@", " ", 
+      RowBox[{
+       RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+       RowBox[{"[", "l", "]"}], "]"}]}], ",", 
+     RowBox[{"circle12", "[", "]"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.7644768115035343`*^9, 3.764476840133543*^9}, {
+  3.764476882009383*^9, 3.7644768926862917`*^9}, {3.7644769347851267`*^9, 
+  3.764477063036375*^9}},
+ CellLabel->
+  "In[259]:=",ExpressionUUID->"34c03870-6327-47a9-ae1e-db59304480c1"],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.1], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.1], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.1], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.1], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.1]}, {
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {0.9424777960769379, 1.1519173063162575`}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {1.4660765716752366`, 1.6755160819145563`}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {1.9896753472735356`, 2.199114857512855}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {2.5132741228718345`, 2.7227136331111543`}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {3.036872898470133, 3.2463124087094526`}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {3.560471674068432, 3.7699111843077517`}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {4.08407044966673, 4.29350995990605}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {4.60766922526503, 4.817108735504349}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {5.1312680008633285`, 5.340707511102647}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {5.654866776461628, 5.864306286700947}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {6.178465552059927, 6.387905062299246}]}, 
+    {Thickness[0.01], 
+     CircleBox[{0, 0}, 1, {6.702064327658225, 
+      6.911503837897544}]}}}]], "Output",
+ CellChangeTimes->{{3.764476965077547*^9, 3.764477011906846*^9}, {
+  3.7644770517376003`*^9, 3.764477064418981*^9}},
+ CellLabel->
+  "Out[261]=",ExpressionUUID->"1d1fa3ec-fb57-47f0-b46c-36721459b2de"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"circle0", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Thickness", "->", "0.01"}], ",", 
+    RowBox[{"Circle", "[", 
+     RowBox[{"centre", ",", "radius"}], "]"}]}], "}"}]}], "\n", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Disk", "[", 
+        RowBox[{"#", ",", "0.1"}], "]"}], "&"}], "/@", " ", 
+      RowBox[{
+       RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+       RowBox[{"[", "l", "]"}], "]"}]}], ",", 
+     RowBox[{"circle0", "[", "]"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{
+  3.7644770787760878`*^9, {3.764477115711032*^9, 3.764477147773398*^9}},
+ CellLabel->
+  "In[268]:=",ExpressionUUID->"e1040209-5381-40da-9fad-a3bd09d001e1"],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.1], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.1], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.1], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.1], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 
+     0.1]}, 
+   {Thickness[0.01], CircleBox[{0, 0}]}}]], "Output",
+ CellChangeTimes->{
+  3.764477080141088*^9, {3.764477138878915*^9, 3.764477149300613*^9}},
+ CellLabel->
+  "Out[270]=",ExpressionUUID->"b8088ecf-65a5-4ec3-b369-4d9d974d0517"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"circle0", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Thickness", "->", "0.03"}], ",", 
+    RowBox[{"Circle", "[", 
+     RowBox[{"centre", ",", "radius"}], "]"}]}], "}"}]}], "\n", 
+ RowBox[{
+  RowBox[{"complementaryNoteList", "[", "l_", "]"}], ":=", 
+  RowBox[{"Complement", "[", 
+   RowBox[{
+    RowBox[{"Range", "[", "12", "]"}], ",", "l"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "0.12"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"circle0", "[", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"White", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "0.15"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}]}], 
+      "}"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764477190681604*^9, 3.764477240688574*^9}, {
+  3.764477281675507*^9, 3.7644772932391663`*^9}, {3.764477345790119*^9, 
+  3.764477399622346*^9}, {3.764477429969574*^9, 3.764477553189329*^9}},
+ CellLabel->
+  "In[353]:=",ExpressionUUID->"83d2f39d-6e32-4cc8-9764-01b11b292eb7"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.12], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.12], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.12], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.12], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.12]}, 
+   {Thickness[0.03], CircleBox[{0, 0}]}, 
+   {GrayLevel[1], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+      0.9659258262890682, -0.2588190451025207}], 0.15], 
+    DiskBox[NCache[{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+      0.7071067811865475, 0.7071067811865475}], 0.15], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, 0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{-2^Rational[-1, 2], 2^
+       Rational[-1, 2]}, {-0.7071067811865475, 0.7071067811865475}], 0.15], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.9659258262890682, 
+      0.2588190451025207}], 0.15], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (-1 + 
+        3^Rational[1, 2])}, {-0.9659258262890682, -0.2588190451025207}], 
+     0.15], DiskBox[
+     NCache[{Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (1 + 
+        3^Rational[1, 2])}, {-0.2588190451025207, -0.9659258262890682}], 
+     0.15]}}]], "Output",
+ CellChangeTimes->{{3.764477193583376*^9, 3.764477241136187*^9}, 
+   3.76447736083547*^9, {3.7644774013663692`*^9, 3.76447755362833*^9}},
+ CellLabel->
+  "Out[356]=",ExpressionUUID->"6e6bd5e7-893b-46d2-9950-697e48e1ff26"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.15"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotRadius", " ", "=", " ", 
+   RowBox[{"blackDotRadius", " ", "-", " ", "whiteDotLineThickness"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"White", ",", 
+       RowBox[{"EdgeForm", "[", 
+        RowBox[{"Thickness", "[", "whiteDotLineThickness", "]"}], "]"}], ",", 
+       
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "whiteDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}]}], 
+      "}"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.7644775792587843`*^9, 3.764477585714127*^9}, {
+  3.7644776177233877`*^9, 3.764477684620592*^9}, {3.7644777226097803`*^9, 
+  3.7644779148660994`*^9}},
+ CellLabel->
+  "In[406]:=",ExpressionUUID->"0f9a7d1f-2c83-40f7-92d0-b02d5ac22fb8"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.15], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.15], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.15]}, 
+   {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+      0.9659258262890682, -0.2588190451025207}], 0.13999999999999999], 
+    DiskBox[NCache[{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+      0.7071067811865475, 0.7071067811865475}], 0.13999999999999999], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, 0.9659258262890682}], 0.13999999999999999], 
+    DiskBox[NCache[{-2^Rational[-1, 2], 2^
+       Rational[-1, 2]}, {-0.7071067811865475, 0.7071067811865475}], 
+     0.13999999999999999], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.9659258262890682, 
+      0.2588190451025207}], 0.13999999999999999], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (-1 + 
+        3^Rational[1, 2])}, {-0.9659258262890682, -0.2588190451025207}], 
+     0.13999999999999999], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (1 + 
+        3^Rational[1, 2])}, {-0.2588190451025207, -0.9659258262890682}], 
+     0.13999999999999999]}}]], "Output",
+ CellChangeTimes->{{3.764477572106758*^9, 3.764477586468873*^9}, {
+  3.764477627144566*^9, 3.7644776850589933`*^9}, {3.764477727972247*^9, 
+  3.764477733838632*^9}, {3.764477875961754*^9, 3.764477915295793*^9}},
+ CellLabel->
+  "Out[410]=",ExpressionUUID->"298b89f4-9523-4a8e-8fb5-8b11efb604a6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.005"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.15"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotRadius", " ", "=", " ", 
+   RowBox[{"blackDotRadius", " ", "-", " ", "whiteDotLineThickness"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"White", ",", 
+       RowBox[{"EdgeForm", "[", 
+        RowBox[{"Thickness", "[", "whiteDotLineThickness", "]"}], "]"}], ",", 
+       
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "whiteDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}]}], 
+      "}"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764477898293799*^9, 3.764477928005431*^9}},
+ CellLabel->
+  "In[411]:=",ExpressionUUID->"e37d334c-be87-4221-a71d-8ec58cad608c"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.15], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.15], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.15]}, 
+   {GrayLevel[1], EdgeForm[Thickness[0.005]], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+      0.9659258262890682, -0.2588190451025207}], 0.145], 
+    DiskBox[NCache[{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+      0.7071067811865475, 0.7071067811865475}], 0.145], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, 0.9659258262890682}], 0.145], 
+    DiskBox[NCache[{-2^Rational[-1, 2], 2^
+       Rational[-1, 2]}, {-0.7071067811865475, 0.7071067811865475}], 0.145], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.9659258262890682, 
+      0.2588190451025207}], 0.145], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (-1 + 
+        3^Rational[1, 2])}, {-0.9659258262890682, -0.2588190451025207}], 
+     0.145], DiskBox[
+     NCache[{Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (1 + 
+        3^Rational[1, 2])}, {-0.2588190451025207, -0.9659258262890682}], 
+     0.145]}}]], "Output",
+ CellChangeTimes->{{3.7644778987436132`*^9, 3.764477928549317*^9}},
+ CellLabel->
+  "Out[415]=",ExpressionUUID->"ea388c4a-8a87-4017-8cd0-791f40a53ebe"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.15"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotRadius", " ", "=", " ", "0.065"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"White", ",", 
+       RowBox[{"EdgeForm", "[", 
+        RowBox[{"Thickness", "[", "whiteDotLineThickness", "]"}], "]"}], ",", 
+       
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "whiteDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}]}], 
+      "}"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764477898293799*^9, 3.764477980443359*^9}},
+ CellLabel->
+  "In[416]:=",ExpressionUUID->"6fb57f35-fc75-4017-8868-5c8631719ab1"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.15], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.15], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.15]}, 
+   {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+      0.9659258262890682, -0.2588190451025207}], 0.065], 
+    DiskBox[NCache[{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+      0.7071067811865475, 0.7071067811865475}], 0.065], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, 0.9659258262890682}], 0.065], 
+    DiskBox[NCache[{-2^Rational[-1, 2], 2^
+       Rational[-1, 2]}, {-0.7071067811865475, 0.7071067811865475}], 0.065], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.9659258262890682, 
+      0.2588190451025207}], 0.065], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (-1 + 
+        3^Rational[1, 2])}, {-0.9659258262890682, -0.2588190451025207}], 
+     0.065], DiskBox[
+     NCache[{Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (1 + 
+        3^Rational[1, 2])}, {-0.2588190451025207, -0.9659258262890682}], 
+     0.065]}}]], "Output",
+ CellChangeTimes->{{3.7644778987436132`*^9, 3.764477928549317*^9}, 
+   3.76447798143431*^9},
+ CellLabel->
+  "Out[420]=",ExpressionUUID->"80f721e7-595a-4203-b139-506a9ac611fb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.15"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotRadius", " ", "=", " ", "0.05"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "whiteDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}]}], 
+      "}"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764477898293799*^9, 3.76447801942521*^9}},
+ CellLabel->
+  "In[426]:=",ExpressionUUID->"f2ea72ae-1d7c-463c-b3ea-fd085cb70c7c"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.15], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.15], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.15], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.15]}, 
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+      0.9659258262890682, -0.2588190451025207}], 0.05], 
+    DiskBox[NCache[{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+      0.7071067811865475, 0.7071067811865475}], 0.05], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, 0.9659258262890682}], 0.05], 
+    DiskBox[NCache[{-2^Rational[-1, 2], 2^
+       Rational[-1, 2]}, {-0.7071067811865475, 0.7071067811865475}], 0.05], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.9659258262890682, 
+      0.2588190451025207}], 0.05], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (-1 + 
+        3^Rational[1, 2])}, {-0.9659258262890682, -0.2588190451025207}], 
+     0.05], DiskBox[
+     NCache[{Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (1 + 
+        3^Rational[1, 2])}, {-0.2588190451025207, -0.9659258262890682}], 
+     0.05]}}]], "Output",
+ CellChangeTimes->{{3.7644778987436132`*^9, 3.764477928549317*^9}, 
+   3.76447798143431*^9, {3.764478011793133*^9, 3.764478019833969*^9}},
+ CellLabel->
+  "Out[430]=",ExpressionUUID->"1189c1b7-c737-4b95-b7f0-04ba7630d38d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.13"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotRadius", " ", "=", " ", "0.035"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "whiteDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}]}], 
+      "}"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764477898293799*^9, 3.7644780695233593`*^9}},
+ CellLabel->
+  "In[461]:=",ExpressionUUID->"a73b8c9c-cc95-49ba-95b1-f62281765ae6"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.13], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.13], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.13]}, 
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+      0.9659258262890682, -0.2588190451025207}], 0.035], 
+    DiskBox[NCache[{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+      0.7071067811865475, 0.7071067811865475}], 0.035], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, 0.9659258262890682}], 0.035], 
+    DiskBox[NCache[{-2^Rational[-1, 2], 2^
+       Rational[-1, 2]}, {-0.7071067811865475, 0.7071067811865475}], 0.035], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.9659258262890682, 
+      0.2588190451025207}], 0.035], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (-1 + 
+        3^Rational[1, 2])}, {-0.9659258262890682, -0.2588190451025207}], 
+     0.035], DiskBox[
+     NCache[{Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (1 + 
+        3^Rational[1, 2])}, {-0.2588190451025207, -0.9659258262890682}], 
+     0.035]}}]], "Output",
+ CellChangeTimes->{{3.7644778987436132`*^9, 3.764477928549317*^9}, 
+   3.76447798143431*^9, {3.764478011793133*^9, 3.764478069886986*^9}},
+ CellLabel->
+  "Out[465]=",ExpressionUUID->"1cfa459b-3bc8-4e31-b42c-82c38fd5814f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.13"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotRadius", " ", "=", " ", "0.05"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"circle1", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Thickness", "->", "0.015"}], ",", 
+    RowBox[{"Circle", "[", 
+     RowBox[{"centre", ",", "radius"}], "]"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "whiteDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}]}], 
+      "}"}], ",", 
+     RowBox[{"circle1", "[", "]"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764477898293799*^9, 3.76447801942521*^9}, {
+  3.76447813050152*^9, 3.764478315781948*^9}},
+ CellLabel->
+  "In[519]:=",ExpressionUUID->"21dce34e-fd54-4d15-a195-8b439730952b"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.13], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.13], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 0.13]}, 
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+      0.9659258262890682, -0.2588190451025207}], 0.05], 
+    DiskBox[NCache[{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+      0.7071067811865475, 0.7071067811865475}], 0.05], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, 0.9659258262890682}], 0.05], 
+    DiskBox[NCache[{-2^Rational[-1, 2], 2^
+       Rational[-1, 2]}, {-0.7071067811865475, 0.7071067811865475}], 0.05], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.9659258262890682, 
+      0.2588190451025207}], 0.05], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (-1 + 
+        3^Rational[1, 2])}, {-0.9659258262890682, -0.2588190451025207}], 
+     0.05], DiskBox[
+     NCache[{Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 
+       2^Rational[-1, 2] (1 + 
+        3^Rational[1, 2])}, {-0.2588190451025207, -0.9659258262890682}], 
+     0.05]}, 
+   {Thickness[0.015], CircleBox[{0, 0}]}}]], "Output",
+ CellChangeTimes->{{3.764478136998864*^9, 3.764478188254615*^9}, 
+   3.764478243480936*^9, {3.7644782942127867`*^9, 3.7644783161624737`*^9}},
+ CellLabel->
+  "Out[524]=",ExpressionUUID->"8fa61143-6d33-4bc6-b33b-f1f04d5b6193"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"radialLine", "[", 
+   RowBox[{"p_", ",", "innerRadius_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{"Line", "[", 
+    RowBox[{"{", 
+     RowBox[{"p", ",", 
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "*", "innerRadius"}]}], "}"}], 
+    "]"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.13"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lineThickness", " ", "=", " ", "0.015"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"circle1", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Thickness", "->", "lineThickness"}], ",", 
+    RowBox[{"Circle", "[", 
+     RowBox[{"centre", ",", "radius"}], "]"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Thickness", "\[Rule]", "lineThickness"}], ",", 
+          RowBox[{"radialLine", "[", 
+           RowBox[{"#", ",", "0.9"}], "]"}]}], "}"}], "&"}], "/@", " ", 
+       RowBox[{
+        RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}], 
+      "}"}], ",", 
+     RowBox[{"circle1", "[", "]"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764478352245077*^9, 3.764478494831164*^9}, {
+  3.76447853699933*^9, 3.7644785410702353`*^9}, {3.764478635484473*^9, 
+  3.764478743194165*^9}},
+ CellLabel->
+  "In[575]:=",ExpressionUUID->"510e8400-f4a0-49be-a937-7f05890513c3"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.13], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.13], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 
+     0.13]}, {
+    {Thickness[0.015], 
+     LineBox[NCache[{{
+        Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+         Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {
+        0.8693332436601613, -0.23293714059226864`}}, {{
+       0.9659258262890682, -0.2588190451025207}, {
+       0.8693332436601613, -0.23293714059226864`}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{2^Rational[-1, 2], 2^Rational[-1, 2]}, {
+        0.6363961030678927, 0.6363961030678927}}, {{0.7071067811865475, 
+       0.7071067811865475}, {0.6363961030678927, 0.6363961030678927}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{
+        Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+         Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+        0.23293714059226864`, 0.8693332436601613}}, {{0.2588190451025207, 
+       0.9659258262890682}, {0.23293714059226864`, 0.8693332436601613}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{-2^Rational[-1, 2], 2^
+         Rational[-1, 2]}, {-0.6363961030678927, 
+        0.6363961030678927}}, {{-0.7071067811865475, 
+       0.7071067811865475}, {-0.6363961030678927, 0.6363961030678927}}]]}, 
+    {Thickness[0.015], 
+     LineBox[
+      NCache[{{Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+         Rational[1, 2] 
+         2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {-0.8693332436601613, 
+        0.23293714059226864`}}, {{-0.9659258262890682, 
+       0.2588190451025207}, {-0.8693332436601613, 0.23293714059226864`}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{
+        Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), 
+         Rational[-1, 2] 
+         2^Rational[-1, 2] (-1 + 
+          3^Rational[
+            1, 2])}, {-0.8693332436601613, -0.23293714059226864`}}, \
+{{-0.9659258262890682, -0.2588190451025207}, {-0.8693332436601613, \
+-0.23293714059226864`}}]]}, 
+    {Thickness[0.015], 
+     LineBox[NCache[{{
+        Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+         Rational[-1, 2] 
+         2^Rational[-1, 2] (1 + 
+          3^Rational[
+            1, 2])}, {-0.23293714059226864`, -0.8693332436601613}}, \
+{{-0.2588190451025207, -0.9659258262890682}, {-0.23293714059226864`, \
+-0.8693332436601613}}]]}}, 
+   {Thickness[0.015], CircleBox[{0, 0}]}}]], "Output",
+ CellChangeTimes->{
+  3.764478466636415*^9, 3.76447854294725*^9, 3.764478638847911*^9, {
+   3.764478681077428*^9, 3.764478685231351*^9}, 3.764478745679001*^9},
+ CellLabel->
+  "Out[581]=",ExpressionUUID->"b4a12251-a09b-450a-91ff-00340c91de47"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"radialLine", "[", 
+   RowBox[{"p_", ",", "innerRadius_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{"Line", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "/", "innerRadius"}], ",", 
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "*", "innerRadius"}]}], "}"}], 
+    "]"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.13"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lineThickness", " ", "=", " ", "0.015"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"circle1", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Thickness", "->", "lineThickness"}], ",", 
+    RowBox[{"Circle", "[", 
+     RowBox[{"centre", ",", "radius"}], "]"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Black", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Disk", "[", 
+          RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+        RowBox[{
+         RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+         RowBox[{"[", "l", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Thickness", "\[Rule]", "lineThickness"}], ",", 
+          RowBox[{"radialLine", "[", 
+           RowBox[{"#", ",", "0.94"}], "]"}]}], "}"}], "&"}], "/@", " ", 
+       RowBox[{
+        RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}], 
+      "}"}], ",", 
+     RowBox[{"circle1", "[", "]"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764478352245077*^9, 3.764478494831164*^9}, {
+  3.76447853699933*^9, 3.7644785410702353`*^9}, {3.764478635484473*^9, 
+  3.764478743194165*^9}, {3.76447878420253*^9, 3.764478818976335*^9}},
+ CellLabel->
+  "In[603]:=",ExpressionUUID->"dc2493c0-a881-413d-9ed0-05c72a3e8ebc"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {GrayLevel[0], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.13], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.13], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 
+     0.13]}, {
+    {Thickness[0.015], 
+     LineBox[{{1.0275806662649662`, -0.27533940968353265`}, {
+      0.907970276711724, -0.24328990239636947`}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{0.7522412565814335, 0.7522412565814335}, {0.6646803743153545, 
+      0.6646803743153545}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{0.27533940968353265`, 1.0275806662649662`}, {
+      0.24328990239636947`, 0.907970276711724}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-0.7522412565814335, 0.7522412565814335}, {-0.6646803743153545,
+       0.6646803743153545}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-1.0275806662649662`, 
+      0.27533940968353265`}, {-0.907970276711724, 0.24328990239636947`}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-1.0275806662649662`, -0.27533940968353265`}, \
+{-0.907970276711724, -0.24328990239636947`}}]}, 
+    {Thickness[0.015], 
+     LineBox[{{-0.27533940968353265`, -1.0275806662649662`}, \
+{-0.24328990239636947`, -0.907970276711724}}]}}, 
+   {Thickness[0.015], CircleBox[{0, 0}]}}]], "Output",
+ CellChangeTimes->{
+  3.764478466636415*^9, 3.76447854294725*^9, 3.764478638847911*^9, {
+   3.764478681077428*^9, 3.764478685231351*^9}, 3.764478745679001*^9, {
+   3.764478794758395*^9, 3.764478819614101*^9}},
+ CellLabel->
+  "Out[609]=",ExpressionUUID->"86cf00af-98a8-4ed6-8540-f5c0a567cced"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"radialLine", "[", 
+   RowBox[{"p_", ",", "innerRadius_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{"Line", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "/", "innerRadius"}], ",", 
+      RowBox[{
+       RowBox[{"Normalize", "[", "p", "]"}], "*", "innerRadius"}]}], "}"}], 
+    "]"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"whiteDotLineThickness", " ", "=", " ", "0.01"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"blackDotRadius", " ", "=", " ", "0.13"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lineThickness", " ", "=", " ", "0.013"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"circle1", "[", 
+   RowBox[{
+    RowBox[{"centre_:", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"radius_:", "1"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Thickness", "->", "lineThickness"}], ",", 
+    RowBox[{"Circle", "[", 
+     RowBox[{"centre", ",", "radius"}], "]"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ringFromNoteList", "[", "l_", "]"}], ":=", " ", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{"White", ",", 
+     RowBox[{"EdgeForm", "[", 
+      RowBox[{"Thickness", "[", "whiteDotLineThickness", "]"}], "]"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Disk", "[", 
+        RowBox[{"#", ",", "blackDotRadius"}], "]"}], "&"}], "/@", " ", 
+      RowBox[{
+       RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+       RowBox[{"[", "l", "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Black", ",", 
+          RowBox[{"Thickness", "\[Rule]", "lineThickness"}], ",", 
+          RowBox[{"radialLine", "[", 
+           RowBox[{"#", ",", "0.96"}], "]"}]}], "}"}], "&"}], "/@", " ", 
+       RowBox[{
+        RowBox[{"CirclePoints", "[", "12", "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"complementaryNoteList", "[", "l", "]"}], "]"}], "]"}]}], 
+      "}"}]}], "}"}], "]"}]}], "\n", 
+ RowBox[{"ringFromNoteList", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.764478352245077*^9, 3.764478494831164*^9}, {
+  3.76447853699933*^9, 3.7644785410702353`*^9}, {3.764478635484473*^9, 
+  3.764478743194165*^9}, {3.76447878420253*^9, 3.764478818976335*^9}, {
+  3.764478874544056*^9, 3.764478977528331*^9}, {3.764479009266241*^9, 
+  3.764479024643372*^9}},
+ CellLabel->
+  "In[659]:=",ExpressionUUID->"542d30a7-6454-46a3-8d4a-e1be0e980671"],
+
+Cell[BoxData[
+ GraphicsBox[
+  {GrayLevel[1], EdgeForm[Thickness[
+   0.01]], {DiskBox[
+     NCache[{Rational[1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[-1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {
+      0.2588190451025207, -0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{2^Rational[-1, 2], -2^Rational[-1, 2]}, {
+      0.7071067811865475, -0.7071067811865475}], 0.13], 
+    DiskBox[NCache[{
+      Rational[1, 2] 2^Rational[-1, 2] (1 + 3^Rational[1, 2]), Rational[1, 2] 
+       2^Rational[-1, 2] (-1 + 3^Rational[1, 2])}, {0.9659258262890682, 
+      0.2588190451025207}], 0.13], 
+    DiskBox[NCache[{
+      Rational[-1, 2] 2^Rational[-1, 2] (-1 + 3^Rational[1, 2]), 
+       Rational[1, 2] 
+       2^Rational[-1, 2] (1 + 3^Rational[1, 2])}, {-0.2588190451025207, 
+      0.9659258262890682}], 0.13], 
+    DiskBox[NCache[{-2^Rational[-1, 2], -2^
+        Rational[-1, 2]}, {-0.7071067811865475, -0.7071067811865475}], 
+     0.13]}, {
+    {GrayLevel[0], Thickness[0.013], 
+     LineBox[{{1.0061727357177794`, -0.26960317198179246`}, {
+      0.9272887932375055, -0.24846628329841985`}}]}, 
+    {GrayLevel[0], Thickness[0.013], 
+     LineBox[{{0.736569563735987, 0.736569563735987}, {0.6788225099390855, 
+      0.6788225099390855}}]}, 
+    {GrayLevel[0], Thickness[0.013], 
+     LineBox[{{0.26960317198179246`, 1.0061727357177794`}, {
+      0.24846628329841985`, 0.9272887932375055}}]}, 
+    {GrayLevel[0], Thickness[0.013], 
+     LineBox[{{-0.736569563735987, 0.736569563735987}, {-0.6788225099390855, 
+      0.6788225099390855}}]}, 
+    {GrayLevel[0], Thickness[0.013], 
+     LineBox[{{-1.0061727357177794`, 
+      0.26960317198179246`}, {-0.9272887932375055, 0.24846628329841985`}}]}, 
+    {GrayLevel[0], Thickness[0.013], 
+     LineBox[{{-1.0061727357177794`, -0.26960317198179246`}, \
+{-0.9272887932375055, -0.24846628329841985`}}]}, 
+    {GrayLevel[0], Thickness[0.013], 
+     LineBox[{{-0.26960317198179246`, -1.0061727357177794`}, \
+{-0.24846628329841985`, -0.9272887932375055}}]}}}]], "Output",
+ CellChangeTimes->{
+  3.764478466636415*^9, 3.76447854294725*^9, 3.764478638847911*^9, {
+   3.764478681077428*^9, 3.764478685231351*^9}, 3.764478745679001*^9, {
+   3.764478794758395*^9, 3.764478819614101*^9}, {3.764478894359704*^9, 
+   3.7644789476027117`*^9}, {3.7644789962541113`*^9, 3.7644790250414677`*^9}},
+ 
+ CellLabel->
+  "Out[665]=",ExpressionUUID->"efe793d7-7815-45c5-8329-a074e8136b5b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"EdgeForm", "[", 
+          RowBox[{"Thickness", "[", "0.01", "]"}], "]"}], ",", "Black", ",", 
+         RowBox[{"Annulus", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0.7", ",", "1"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"#", ",", 
+             RowBox[{"#", "+", 
+              RowBox[{"2", 
+               RowBox[{"\[Pi]", "/", "12"}]}]}]}], "}"}]}], "]"}]}], "}"}], 
+       "&"}], "/@", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"2", "\[Pi]", " ", 
+         RowBox[{
+          RowBox[{"Range", "[", "12", "]"}], "/", "12"}]}], ")"}], "[", 
+       RowBox[{"[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], "]"}],
+        "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"Thickness", "[", "0.01", "]"}], "]"}], ",", "White", ",", 
+        RowBox[{"Annulus", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0.7", ",", "1"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"#", ",", 
+            RowBox[{"#", "+", 
+             RowBox[{"2", 
+              RowBox[{"\[Pi]", "/", "12"}]}]}]}], "}"}]}], "]"}]}], "}"}], 
+      "&"}], "/@", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"2", "\[Pi]", " ", 
+        RowBox[{
+         RowBox[{"Range", "[", "12", "]"}], "/", "12"}]}], ")"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"complementaryNoteList", "[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], "]"}],
+        "]"}], "]"}]}]}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.764479287389942*^9, 3.764479311775969*^9}, {
+  3.7644793641450377`*^9, 3.76447943579811*^9}, {3.764479468009516*^9, 
+  3.764479529951791*^9}, {3.764479563716268*^9, 3.764479846818268*^9}, {
+  3.76447988031186*^9, 3.7644799477790203`*^9}, {3.764479985761771*^9, 
+  3.764479986940825*^9}, {3.764480021054338*^9, 3.7644800894014797`*^9}},
+ CellLabel->
+  "In[714]:=",ExpressionUUID->"1e45a26a-53b2-4346-a2e4-fa65c4a66a54"],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.8660254037844388, 0.4999999999999996}, {
+        0.7320508075688774, 0.7320508075688772}, {0.5, 0.8660254037844386}, {
+        0.42500000000000004`, 0.7361215932167728}, {0.35, 
+        0.606217782649107}, {0.5124355652982142, 0.512435565298214}, {
+        0.6062177826491072, 0.34999999999999976`}, {0.7361215932167732, 
+        0.42499999999999977`}, {0.8660254037844388, 0.4999999999999996}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Rational[1, 6] Pi, Rational[1, 3] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.5000000000000003, 0.8660254037844385}, {
+        0.26794919243112286`, 1.}, {0., 1.}, {0., 0.8500000000000001}, {0., 
+        0.7}, {0.18756443470178602`, 0.7}, {0.35000000000000026`, 
+        0.606217782649107}, {0.4250000000000004, 0.7361215932167728}, {
+        0.5000000000000003, 0.8660254037844385}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Rational[1, 3] Pi, Rational[1, 2] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.4999999999999996, 
+        0.8660254037844388}, {-0.7320508075688772, 
+        0.7320508075688774}, {-0.8660254037844386, 0.5}, {-0.7361215932167728,
+         0.42500000000000004`}, {-0.606217782649107, 
+        0.35}, {-0.512435565298214, 
+        0.5124355652982142}, {-0.34999999999999976`, 
+        0.6062177826491072}, {-0.42499999999999977`, 
+        0.7361215932167732}, {-0.4999999999999996, 0.8660254037844388}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Rational[2, 3] Pi, Rational[5, 6] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.8660254037844388, -0.4999999999999996}, \
+{-0.7320508075688774, -0.7320508075688772}, {-0.5, -0.8660254037844386}, \
+{-0.42500000000000004`, -0.7361215932167728}, {-0.35, -0.606217782649107}, \
+{-0.5124355652982142, -0.512435565298214}, {-0.6062177826491072, \
+-0.34999999999999976`}, {-0.7361215932167732, -0.42499999999999977`}, \
+{-0.8660254037844388, -0.4999999999999996}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Rational[7, 6] Pi, Rational[4, 3] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.8660254037844385, -0.5000000000000003}, {
+        1., -0.26794919243112286`}, {1., 0.}, {0.8500000000000001, 0.}, {0.7, 
+        0.}, {0.7, -0.18756443470178602`}, {
+        0.606217782649107, -0.35000000000000026`}, {
+        0.7361215932167728, -0.4250000000000004}, {
+        0.8660254037844385, -0.5000000000000003}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Rational[11, 6] Pi, 2 Pi}]]}}, {
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{3.3306690738754696`*^-16, 1.}, {-0.2679491924311226, 
+        1.}, {-0.5, 0.8660254037844386}, {-0.42500000000000004`, 
+        0.7361215932167728}, {-0.35, 
+        0.606217782649107}, {-0.18756443470178577`, 0.7}, {
+        2.220446049250313*^-16, 0.7000000000000001}, {
+        3.3306690738754696`*^-16, 0.8500000000000001}, {
+        3.3306690738754696`*^-16, 1.}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Rational[1, 2] Pi, Rational[2, 3] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.8660254037844385, 0.5000000000000003}, {-1., 
+        0.26794919243112286`}, {-1., 0.}, {-0.8500000000000001, 0.}, {-0.7, 
+        0.}, {-0.7, 0.18756443470178602`}, {-0.606217782649107, 
+        0.35000000000000026`}, {-0.7361215932167728, 
+        0.4250000000000004}, {-0.8660254037844385, 0.5000000000000003}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Rational[5, 6] Pi, Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-1., 
+        3.3306690738754696`*^-16}, {-1., -0.2679491924311226}, \
+{-0.8660254037844386, -0.5}, {-0.7361215932167728, -0.42500000000000004`}, \
+{-0.606217782649107, -0.35}, {-0.7, -0.18756443470178577`}, \
+{-0.7000000000000001, 2.220446049250313*^-16}, {-0.8500000000000001, 
+        3.3306690738754696`*^-16}, {-1., 3.3306690738754696`*^-16}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Pi, Rational[7, 6] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.5000000000000003, -0.8660254037844385}, \
+{-0.26794919243112286`, -1.}, {0., -1.}, {0., -0.8500000000000001}, {
+        0., -0.7}, {-0.18756443470178602`, -0.7}, {-0.35000000000000026`, \
+-0.606217782649107}, {-0.4250000000000004, -0.7361215932167728}, \
+{-0.5000000000000003, -0.8660254037844385}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Rational[4, 3] Pi, Rational[3, 2] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-3.3306690738754696`*^-16, -1.}, {
+        0.2679491924311226, -1.}, {0.5, -0.8660254037844386}, {
+        0.42500000000000004`, -0.7361215932167728}, {
+        0.35, -0.606217782649107}, {
+        0.18756443470178577`, -0.7}, {-2.220446049250313*^-16, \
+-0.7000000000000001}, {-3.3306690738754696`*^-16, -0.8500000000000001}, \
+{-3.3306690738754696`*^-16, -1.}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Rational[3, 2] Pi, Rational[5, 3] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.4999999999999996, -0.8660254037844388}, {
+        0.7320508075688772, -0.7320508075688774}, {
+        0.8660254037844386, -0.5}, {
+        0.7361215932167728, -0.42500000000000004`}, {
+        0.606217782649107, -0.35}, {0.512435565298214, -0.5124355652982142}, {
+        0.34999999999999976`, -0.6062177826491072}, {
+        0.42499999999999977`, -0.7361215932167732}, {
+        0.4999999999999996, -0.8660254037844388}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {Rational[5, 3] Pi, Rational[11, 6] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{1., -3.3306690738754696`*^-16}, {1., 
+        0.2679491924311226}, {0.8660254037844386, 0.5}, {0.7361215932167728, 
+        0.42500000000000004`}, {0.606217782649107, 0.35}, {0.7, 
+        0.18756443470178577`}, {
+        0.7000000000000001, -2.220446049250313*^-16}, {
+        0.8500000000000001, -3.3306690738754696`*^-16}, {
+        1., -3.3306690738754696`*^-16}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.7, 1}, {2 Pi, Rational[13, 6] Pi}]]}}}]], "Output",
+ CellChangeTimes->{
+  3.764479297651554*^9, 3.764479368290016*^9, {3.764479428001032*^9, 
+   3.7644794365908327`*^9}, {3.76447949496369*^9, 3.764479530567534*^9}, {
+   3.764479565343773*^9, 3.764479589265102*^9}, {3.764479624406721*^9, 
+   3.7644796291913567`*^9}, {3.764479689308972*^9, 3.764479811501441*^9}, 
+   3.76447984785254*^9, {3.764479888715679*^9, 3.764479951009706*^9}, 
+   3.764479987533045*^9, {3.7644800313899937`*^9, 3.764480089816256*^9}},
+ CellLabel->
+  "Out[714]=",ExpressionUUID->"23a58084-5ee4-40fb-9f9b-8fc58a91a58b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"EdgeForm", "[", 
+          RowBox[{"{", 
+           RowBox[{"White", ",", 
+            RowBox[{"Thickness", "[", "0.01", "]"}]}], "}"}], "]"}], ",", 
+         "Black", ",", 
+         RowBox[{"Annulus", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0.78", ",", "1.02"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"#", ",", 
+             RowBox[{"#", "+", 
+              RowBox[{"2", 
+               RowBox[{"\[Pi]", "/", "12"}]}]}]}], "}"}]}], "]"}]}], "}"}], 
+       "&"}], "/@", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"2", "\[Pi]", " ", 
+         RowBox[{
+          RowBox[{"Range", "[", "12", "]"}], "/", "12"}]}], ")"}], "[", 
+       RowBox[{"[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], "]"}],
+        "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"Thickness", "[", "0.01", "]"}], "]"}], ",", "White", ",", 
+        RowBox[{"Annulus", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0.8", ",", "1"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"#", ",", 
+            RowBox[{"#", "+", 
+             RowBox[{"2", 
+              RowBox[{"\[Pi]", "/", "12"}]}]}]}], "}"}]}], "]"}]}], "}"}], 
+      "&"}], "/@", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"2", "\[Pi]", " ", 
+        RowBox[{
+         RowBox[{"Range", "[", "12", "]"}], "/", "12"}]}], ")"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"complementaryNoteList", "[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], "]"}],
+        "]"}], "]"}]}]}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.764480105614819*^9, 3.7644801092815113`*^9}, {
+  3.764480426802577*^9, 3.764480487372725*^9}},
+ CellLabel->
+  "In[738]:=",ExpressionUUID->"8484b098-8595-47cd-a147-b123e57356be"],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {GrayLevel[0], EdgeForm[{GrayLevel[1], Thickness[0.01]}], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.8833459118601276, 0.5099999999999996}, {
+        0.746691823720255, 0.7466918237202547}, {0.51, 0.8833459118601273}, {
+        0.44999999999999996`, 0.7794228634059945}, {0.38999999999999996`, 
+        0.6754998149518621}, {0.5709996299037243, 0.5709996299037241}, {
+        0.6754998149518623, 0.3899999999999997}, {0.7794228634059948, 
+        0.4499999999999996}, {0.8833459118601276, 0.5099999999999996}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.78, 1.02}, {Rational[1, 6] Pi, Rational[1, 3] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[{GrayLevel[1], Thickness[0.01]}], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.5100000000000003, 0.8833459118601272}, {
+        0.27330817627974535`, 1.02}, {0., 1.02}, {0., 0.8999999999999999}, {
+        0., 0.7799999999999999}, {0.20900037009627584`, 0.7799999999999999}, {
+        0.3900000000000003, 0.6754998149518621}, {0.45000000000000023`, 
+        0.7794228634059945}, {0.5100000000000003, 0.8833459118601272}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.78, 1.02}, {Rational[1, 3] Pi, Rational[1, 2] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[{GrayLevel[1], Thickness[0.01]}], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.5099999999999996, 
+        0.8833459118601276}, {-0.7466918237202547, 
+        0.746691823720255}, {-0.8833459118601273, 0.51}, {-0.7794228634059945,
+         0.44999999999999996`}, {-0.6754998149518621, 
+        0.38999999999999996`}, {-0.5709996299037241, 
+        0.5709996299037243}, {-0.3899999999999997, 
+        0.6754998149518623}, {-0.4499999999999996, 
+        0.7794228634059948}, {-0.5099999999999996, 0.8833459118601276}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.78, 1.02}, {Rational[2, 3] Pi, Rational[5, 6] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[{GrayLevel[1], Thickness[0.01]}], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.8833459118601276, -0.5099999999999996}, \
+{-0.746691823720255, -0.7466918237202547}, {-0.51, -0.8833459118601273}, \
+{-0.44999999999999996`, -0.7794228634059945}, {-0.38999999999999996`, \
+-0.6754998149518621}, {-0.5709996299037243, -0.5709996299037241}, \
+{-0.6754998149518623, -0.3899999999999997}, {-0.7794228634059948, \
+-0.4499999999999996}, {-0.8833459118601276, -0.5099999999999996}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.78, 1.02}, {Rational[7, 6] Pi, Rational[4, 3] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[{GrayLevel[1], Thickness[0.01]}], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.8833459118601272, -0.5100000000000003}, {
+        1.02, -0.27330817627974535`}, {1.02, 0.}, {0.8999999999999999, 0.}, {
+        0.7799999999999999, 0.}, {
+        0.7799999999999999, -0.20900037009627584`}, {
+        0.6754998149518621, -0.3900000000000003}, {
+        0.7794228634059945, -0.45000000000000023`}, {
+        0.8833459118601272, -0.5100000000000003}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.78, 1.02}, {Rational[11, 6] Pi, 2 Pi}]]}}, {
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{3.3306690738754696`*^-16, 1.}, {-0.2679491924311226, 
+        1.}, {-0.5, 0.8660254037844386}, {-0.45, 0.7794228634059948}, {-0.4, 
+        0.6928203230275509}, {-0.21435935394489805`, 0.8}, {
+        2.7755575615628914`*^-16, 0.8}, {2.7755575615628914`*^-16, 
+        0.9000000000000001}, {3.3306690738754696`*^-16, 1.}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.8, 1}, {Rational[1, 2] Pi, Rational[2, 3] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.8660254037844385, 0.5000000000000003}, {-1., 
+        0.26794919243112286`}, {-1., 0.}, {-0.9, 0.}, {-0.8, 0.}, {-0.8, 
+        0.21435935394489833`}, {-0.6928203230275508, 
+        0.4000000000000003}, {-0.7794228634059948, 
+        0.45000000000000034`}, {-0.8660254037844385, 0.5000000000000003}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.8, 1}, {Rational[5, 6] Pi, Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-1., 
+        3.3306690738754696`*^-16}, {-1., -0.2679491924311226}, \
+{-0.8660254037844386, -0.5}, {-0.7794228634059948, -0.45}, \
+{-0.6928203230275509, -0.4}, {-0.8, -0.21435935394489805`}, {-0.8, 
+        2.7755575615628914`*^-16}, {-0.9000000000000001, 
+        2.7755575615628914`*^-16}, {-1., 3.3306690738754696`*^-16}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.8, 1}, {Pi, Rational[7, 6] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.5000000000000003, -0.8660254037844385}, \
+{-0.26794919243112286`, -1.}, {0., -1.}, {0., -0.9}, {
+        0., -0.8}, {-0.21435935394489833`, -0.8}, {-0.4000000000000003, \
+-0.6928203230275508}, {-0.45000000000000034`, -0.7794228634059948}, \
+{-0.5000000000000003, -0.8660254037844385}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.8, 1}, {Rational[4, 3] Pi, Rational[3, 2] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-3.3306690738754696`*^-16, -1.}, {
+        0.2679491924311226, -1.}, {0.5, -0.8660254037844386}, {
+        0.45, -0.7794228634059948}, {0.4, -0.6928203230275509}, {
+        0.21435935394489805`, -0.8}, {-2.7755575615628914`*^-16, -0.8}, \
+{-2.7755575615628914`*^-16, -0.9000000000000001}, {-3.3306690738754696`*^-16, \
+-1.}}, SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.8, 1}, {Rational[3, 2] Pi, Rational[5, 3] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.4999999999999996, -0.8660254037844388}, {
+        0.7320508075688772, -0.7320508075688774}, {
+        0.8660254037844386, -0.5}, {0.7794228634059948, -0.45}, {
+        0.6928203230275509, -0.4}, {0.5856406460551018, -0.585640646055102}, {
+        0.3999999999999997, -0.6928203230275511}, {
+        0.44999999999999973`, -0.779422863405995}, {
+        0.4999999999999996, -0.8660254037844388}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.8, 1}, {Rational[5, 3] Pi, Rational[11, 6] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{1., -3.3306690738754696`*^-16}, {1., 
+        0.2679491924311226}, {0.8660254037844386, 0.5}, {0.7794228634059948, 
+        0.45}, {0.6928203230275509, 0.4}, {0.8, 0.21435935394489805`}, {
+        0.8, -2.7755575615628914`*^-16}, {
+        0.9000000000000001, -2.7755575615628914`*^-16}, {
+        1., -3.3306690738754696`*^-16}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.8, 1}, {2 Pi, Rational[13, 6] Pi}]]}}}]], "Output",
+ CellChangeTimes->{
+  3.764480109697983*^9, {3.764480437103263*^9, 3.7644804881859283`*^9}},
+ CellLabel->
+  "Out[738]=",ExpressionUUID->"72095bd5-baa0-41c1-aadf-bca7f354a6b0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"EdgeForm", "[", 
+          RowBox[{"Thickness", "[", "0.01", "]"}], "]"}], ",", "Black", ",", 
+         RowBox[{"Annulus", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0.2", ",", "1"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"#", ",", 
+             RowBox[{"#", "+", 
+              RowBox[{"2", 
+               RowBox[{"\[Pi]", "/", "12"}]}]}]}], "}"}]}], "]"}]}], "}"}], 
+       "&"}], "/@", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"2", "\[Pi]", " ", 
+         RowBox[{
+          RowBox[{"Range", "[", "12", "]"}], "/", "12"}]}], ")"}], "[", 
+       RowBox[{"[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], "]"}],
+        "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"Thickness", "[", "0.01", "]"}], "]"}], ",", "White", ",", 
+        RowBox[{"Annulus", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0.2", ",", "1"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"#", ",", 
+            RowBox[{"#", "+", 
+             RowBox[{"2", 
+              RowBox[{"\[Pi]", "/", "12"}]}]}]}], "}"}]}], "]"}]}], "}"}], 
+      "&"}], "/@", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"2", "\[Pi]", " ", 
+        RowBox[{
+         RowBox[{"Range", "[", "12", "]"}], "/", "12"}]}], ")"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"complementaryNoteList", "[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], "]"}],
+        "]"}], "]"}]}]}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.764480124560416*^9, 3.764480130117717*^9}},
+ CellLabel->
+  "In[717]:=",ExpressionUUID->"c149658a-f04f-42dc-97d3-c9abb18ca04b"],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.8660254037844388, 0.4999999999999996}, {
+        0.7320508075688774, 0.7320508075688772}, {0.5, 0.8660254037844386}, {
+        0.30000000000000004`, 0.5196152422706632}, {0.1, 
+        0.17320508075688773`}, {0.1464101615137755, 0.14641016151377545`}, {
+        0.17320508075688779`, 0.09999999999999992}, {0.5196152422706632, 
+        0.2999999999999998}, {0.8660254037844388, 0.4999999999999996}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Rational[1, 6] Pi, Rational[1, 3] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.5000000000000003, 0.8660254037844385}, {
+        0.26794919243112286`, 1.}, {0., 1.}, {0., 0.6000000000000001}, {0., 
+        0.2}, {0.05358983848622458, 0.2}, {0.10000000000000007`, 
+        0.1732050807568877}, {0.3000000000000002, 0.5196152422706631}, {
+        0.5000000000000003, 0.8660254037844385}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Rational[1, 3] Pi, Rational[1, 2] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.4999999999999996, 
+        0.8660254037844388}, {-0.7320508075688772, 
+        0.7320508075688774}, {-0.8660254037844386, 0.5}, {-0.5196152422706632,
+         0.30000000000000004`}, {-0.17320508075688773`, 
+        0.1}, {-0.14641016151377545`, 
+        0.1464101615137755}, {-0.09999999999999992, 
+        0.17320508075688779`}, {-0.2999999999999998, 
+        0.5196152422706632}, {-0.4999999999999996, 0.8660254037844388}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Rational[2, 3] Pi, Rational[5, 6] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.8660254037844388, -0.4999999999999996}, \
+{-0.7320508075688774, -0.7320508075688772}, {-0.5, -0.8660254037844386}, \
+{-0.30000000000000004`, -0.5196152422706632}, {-0.1, -0.17320508075688773`}, \
+{-0.1464101615137755, -0.14641016151377545`}, {-0.17320508075688779`, \
+-0.09999999999999992}, {-0.5196152422706632, -0.2999999999999998}, \
+{-0.8660254037844388, -0.4999999999999996}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Rational[7, 6] Pi, Rational[4, 3] Pi}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.8660254037844385, -0.5000000000000003}, {
+        1., -0.26794919243112286`}, {1., 0.}, {0.6000000000000001, 0.}, {0.2, 
+        0.}, {0.2, -0.05358983848622458}, {
+        0.1732050807568877, -0.10000000000000007`}, {
+        0.5196152422706631, -0.3000000000000002}, {
+        0.8660254037844385, -0.5000000000000003}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Rational[11, 6] Pi, 2 Pi}]]}}, {
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{3.3306690738754696`*^-16, 1.}, {-0.2679491924311226, 
+        1.}, {-0.5, 0.8660254037844386}, {-0.30000000000000004`, 
+        0.5196152422706632}, {-0.1, 
+        0.17320508075688773`}, {-0.05358983848622451, 0.2}, {
+        6.938893903907228*^-17, 0.2}, {1.6653345369377348`*^-16, 
+        0.6000000000000001}, {3.3306690738754696`*^-16, 1.}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Rational[1, 2] Pi, Rational[2, 3] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.8660254037844385, 0.5000000000000003}, {-1., 
+        0.26794919243112286`}, {-1., 0.}, {-0.6000000000000001, 0.}, {-0.2, 
+        0.}, {-0.2, 0.05358983848622458}, {-0.1732050807568877, 
+        0.10000000000000007`}, {-0.5196152422706631, 
+        0.3000000000000002}, {-0.8660254037844385, 0.5000000000000003}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Rational[5, 6] Pi, Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-1., 
+        3.3306690738754696`*^-16}, {-1., -0.2679491924311226}, \
+{-0.8660254037844386, -0.5}, {-0.5196152422706632, -0.30000000000000004`}, \
+{-0.17320508075688773`, -0.1}, {-0.2, -0.05358983848622451}, {-0.2, 
+        6.938893903907228*^-17}, {-0.6000000000000001, 
+        1.6653345369377348`*^-16}, {-1., 3.3306690738754696`*^-16}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Pi, Rational[7, 6] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-0.5000000000000003, -0.8660254037844385}, \
+{-0.26794919243112286`, -1.}, {0., -1.}, {0., -0.6000000000000001}, {
+        0., -0.2}, {-0.05358983848622458, -0.2}, {-0.10000000000000007`, \
+-0.1732050807568877}, {-0.3000000000000002, -0.5196152422706631}, \
+{-0.5000000000000003, -0.8660254037844385}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Rational[4, 3] Pi, Rational[3, 2] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{-3.3306690738754696`*^-16, -1.}, {
+        0.2679491924311226, -1.}, {0.5, -0.8660254037844386}, {
+        0.30000000000000004`, -0.5196152422706632}, {
+        0.1, -0.17320508075688773`}, {
+        0.05358983848622451, -0.2}, {-6.938893903907228*^-17, -0.2}, \
+{-1.6653345369377348`*^-16, -0.6000000000000001}, {-3.3306690738754696`*^-16, \
+-1.}}, SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Rational[3, 2] Pi, Rational[5, 3] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{0.4999999999999996, -0.8660254037844388}, {
+        0.7320508075688772, -0.7320508075688774}, {
+        0.8660254037844386, -0.5}, {
+        0.5196152422706632, -0.30000000000000004`}, {
+        0.17320508075688773`, -0.1}, {
+        0.14641016151377545`, -0.1464101615137755}, {
+        0.09999999999999992, -0.17320508075688779`}, {
+        0.2999999999999998, -0.5196152422706632}, {
+        0.4999999999999996, -0.8660254037844388}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {Rational[5, 3] Pi, Rational[11, 6] Pi}]]}, 
+    {GrayLevel[1], EdgeForm[Thickness[0.01]], 
+     InterpretationBox[
+      FilledCurveBox[
+       BSplineCurve[{{1., -3.3306690738754696`*^-16}, {1., 
+        0.2679491924311226}, {0.8660254037844386, 0.5}, {0.5196152422706632, 
+        0.30000000000000004`}, {0.17320508075688773`, 0.1}, {0.2, 
+        0.05358983848622451}, {0.2, -6.938893903907228*^-17}, {
+        0.6000000000000001, -1.6653345369377348`*^-16}, {
+        1., -3.3306690738754696`*^-16}}, 
+        SplineKnots -> {
+         0, 0, 0, Rational[1, 4], Rational[1, 4], Rational[1, 2], Rational[
+          1, 2], Rational[3, 4], Rational[3, 4], 1, 1, 1}, 
+        SplineWeights -> {
+         1.333333333333333, 1.5773502691896255`, 2, 2, 2, 1.5773502691896255`,
+           1.333333333333333, 1.333333333333333, 1.333333333333333}, 
+        SplineDegree -> 2]],
+      Annulus[{0, 0}, {0.2, 1}, {2 Pi, Rational[13, 6] Pi}]]}}}]], "Output",
+ CellChangeTimes->{{3.7644801250375643`*^9, 3.764480130679658*^9}},
+ CellLabel->
+  "Out[717]=",ExpressionUUID->"6569ad32-2113-40f9-95a7-379e16312c3c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"EdgeForm", "[", 
+          RowBox[{"Thickness", "[", "0.01", "]"}], "]"}], ",", "Black", ",", 
+         RowBox[{"Disk", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0"}], "}"}], ",", "1", ",", 
+           RowBox[{"{", 
+            RowBox[{"#", ",", 
+             RowBox[{"#", "+", 
+              RowBox[{"2", 
+               RowBox[{"\[Pi]", "/", "12"}]}]}]}], "}"}]}], "]"}]}], "}"}], 
+       "&"}], "/@", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"2", "\[Pi]", " ", 
+         RowBox[{
+          RowBox[{"Range", "[", "12", "]"}], "/", "12"}]}], ")"}], "[", 
+       RowBox[{"[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], "]"}],
+        "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"Thickness", "[", "0.01", "]"}], "]"}], ",", "Black", ",", 
+        RowBox[{"Disk", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}], ",", "0.5", ",", 
+          RowBox[{"{", 
+           RowBox[{"#", ",", 
+            RowBox[{"#", "+", 
+             RowBox[{"2", 
+              RowBox[{"\[Pi]", "/", "12"}]}]}]}], "}"}]}], "]"}]}], "}"}], 
+      "&"}], "/@", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"2", "\[Pi]", " ", 
+        RowBox[{
+         RowBox[{"Range", "[", "12", "]"}], "/", "12"}]}], ")"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"complementaryNoteList", "[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], "]"}],
+        "]"}], "]"}]}]}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.764480124560416*^9, 3.764480223281918*^9}},
+ CellLabel->
+  "In[721]:=",ExpressionUUID->"8d00a8bd-1d39-4a5c-8bb2-480f657d5f19"],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 1, 
+      NCache[{Rational[1, 6] Pi, Rational[1, 3] Pi}, {0.5235987755982988, 
+       1.0471975511965976`}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 1, 
+      NCache[{Rational[1, 3] Pi, Rational[1, 2] Pi}, {1.0471975511965976`, 
+       1.5707963267948966`}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 1, 
+      NCache[{Rational[2, 3] Pi, Rational[5, 6] Pi}, {2.0943951023931953`, 
+       2.6179938779914944`}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 1, 
+      NCache[{Rational[7, 6] Pi, Rational[4, 3] Pi}, {3.6651914291880923`, 
+       4.1887902047863905`}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 1, 
+      NCache[{Rational[11, 6] Pi, 2 Pi}, {5.759586531581287, 
+       6.283185307179586}]]}}, {
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 0.5, 
+      NCache[{Rational[1, 2] Pi, Rational[2, 3] Pi}, {1.5707963267948966`, 
+       2.0943951023931953`}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 0.5, 
+      NCache[{Rational[5, 6] Pi, Pi}, {2.6179938779914944`, 
+       3.141592653589793}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 0.5, 
+      NCache[{Pi, Rational[7, 6] Pi}, {3.141592653589793, 
+       3.6651914291880923`}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 0.5, 
+      NCache[{Rational[4, 3] Pi, Rational[3, 2] Pi}, {4.1887902047863905`, 
+       4.71238898038469}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 0.5, 
+      NCache[{Rational[3, 2] Pi, Rational[5, 3] Pi}, {4.71238898038469, 
+       5.235987755982989}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 0.5, 
+      NCache[{Rational[5, 3] Pi, Rational[11, 6] Pi}, {5.235987755982989, 
+       5.759586531581287}]]}, 
+    {GrayLevel[0], EdgeForm[Thickness[0.01]], 
+     DiskBox[{0, 0}, 0.5, 
+      NCache[{2 Pi, Rational[13, 6] Pi}, {6.283185307179586, 
+       6.8067840827778845`}]]}}}]], "Output",
+ CellChangeTimes->{{3.7644801610805273`*^9, 3.7644801762653923`*^9}, 
+   3.7644802238082943`*^9},
+ CellLabel->
+  "Out[721]=",ExpressionUUID->"0d5e9ff3-6c07-403d-9510-d3301cf1b327"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Thickness", "[", "0.03", "]"}], ",", "Black", ",", 
+         RowBox[{"Circle", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0"}], "}"}], ",", "1", ",", 
+           RowBox[{"{", 
+            RowBox[{"#", ",", 
+             RowBox[{"#", "+", 
+              RowBox[{"2", 
+               RowBox[{"\[Pi]", "/", "19"}]}]}]}], "}"}]}], "]"}]}], "}"}], 
+       "&"}], "/@", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"2", "\[Pi]", " ", 
+         RowBox[{
+          RowBox[{"Range", "[", "12", "]"}], "/", "12"}]}], ")"}], "[", 
+       RowBox[{"[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], "]"}],
+        "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Thickness", "[", "0.03", "]"}], ",", "Black", ",", 
+        RowBox[{"Circle", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}], ",", "0.7", ",", 
+          RowBox[{"{", 
+           RowBox[{"#", ",", 
+            RowBox[{"#", "+", 
+             RowBox[{"2", 
+              RowBox[{"\[Pi]", "/", "19"}]}]}]}], "}"}]}], "]"}]}], "}"}], 
+      "&"}], "/@", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"2", "\[Pi]", " ", 
+        RowBox[{
+         RowBox[{"Range", "[", "12", "]"}], "/", "12"}]}], ")"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"complementaryNoteList", "[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2", ",", "4", ",", "7", ",", "11"}], "}"}], "]"}],
+        "]"}], "]"}]}]}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.764480124560416*^9, 3.764480223281918*^9}, {
+  3.764480268847294*^9, 3.764480298456749*^9}, {3.7644803429417267`*^9, 
+  3.764480395423544*^9}},
+ CellLabel->
+  "In[730]:=",ExpressionUUID->"a66f33c7-5c05-4535-97f9-7289fcdf7209"],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 1, 
+      NCache[{Rational[1, 6] Pi, Rational[31, 114] Pi}, {0.5235987755982988, 
+       0.8542927391340666}]]}, 
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 1, 
+      NCache[{Rational[1, 3] Pi, Rational[25, 57] Pi}, {1.0471975511965976`, 
+       1.3778915147323654`}]]}, 
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 1, 
+      NCache[{Rational[2, 3] Pi, Rational[44, 57] Pi}, {2.0943951023931953`, 
+       2.425089065928963}]]}, 
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 1, 
+      NCache[{Rational[7, 6] Pi, Rational[145, 114] Pi}, {3.6651914291880923`,
+        3.9958853927238596`}]]}, 
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 1, 
+      NCache[{Rational[11, 6] Pi, Rational[221, 114] Pi}, {5.759586531581287, 
+       6.090280495117055}]]}}, {
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 0.7, 
+      NCache[{Rational[1, 2] Pi, Rational[23, 38] Pi}, {1.5707963267948966`, 
+       1.9014902903306643`}]]}, 
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 0.7, 
+      NCache[{Rational[5, 6] Pi, Rational[107, 114] Pi}, {2.6179938779914944`,
+        2.948687841527262}]]}, 
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 0.7, 
+      NCache[{Pi, Rational[21, 19] Pi}, {3.141592653589793, 
+       3.4722866171255613`}]]}, 
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 0.7, 
+      NCache[{Rational[4, 3] Pi, Rational[82, 57] Pi}, {4.1887902047863905`, 
+       4.519484168322158}]]}, 
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 0.7, 
+      NCache[{Rational[3, 2] Pi, Rational[61, 38] Pi}, {4.71238898038469, 
+       5.043082943920457}]]}, 
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 0.7, 
+      NCache[{Rational[5, 3] Pi, Rational[101, 57] Pi}, {5.235987755982989, 
+       5.566681719518756}]]}, 
+    {GrayLevel[0], Thickness[0.03], 
+     CircleBox[{0, 0}, 0.7, 
+      NCache[{2 Pi, Rational[40, 19] Pi}, {6.283185307179586, 
+       6.613879270715354}]]}}}]], "Output",
+ CellChangeTimes->{{3.764480273912064*^9, 3.7644802997181797`*^9}, {
+  3.764480343582543*^9, 3.764480395804161*^9}},
+ CellLabel->
+  "Out[730]=",ExpressionUUID->"ecdb8d99-b799-4809-acc3-8a9cc7f2b247"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{80, Automatic}, {Automatic, 14}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 156, 3, 67, "Section",ExpressionUUID->"04d37057-73e4-4f6f-9ac0-be8861235d19"],
+Cell[CellGroupData[{
+Cell[761, 29, 3780, 104, 409, "Input",ExpressionUUID->"a7a32f35-e95b-4c63-b764-98e0cb257551"],
+Cell[4544, 135, 4226, 87, 391, "Output",ExpressionUUID->"8fb4ee06-6272-4edd-a8f7-e4b2734d82a6"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8819, 228, 159, 3, 67, "Section",ExpressionUUID->"8caa8aa8-b73f-4be1-a5ae-a0001dd7a0a4"],
+Cell[CellGroupData[{
+Cell[9003, 235, 2939, 81, 304, "Input",ExpressionUUID->"e750dbd9-6f0b-4994-9933-5da6cfe3ef3b"],
+Cell[11945, 318, 2098, 45, 388, "Output",ExpressionUUID->"85e000f8-942e-4676-a008-189614fdefb7"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14092, 369, 217, 4, 67, "Section",ExpressionUUID->"b9f289aa-40d9-4ca3-a483-453a63d2ecd3"],
+Cell[CellGroupData[{
+Cell[14334, 377, 2951, 81, 283, "Input",ExpressionUUID->"8ec62d23-7876-456b-973e-5320cc3894cc"],
+Cell[17288, 460, 4572, 95, 392, "Output",ExpressionUUID->"65673dc9-eefd-46f0-8d80-995d17037836"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21909, 561, 173, 3, 67, "Section",ExpressionUUID->"95b190f1-2847-439f-83cd-a6cf89f24c2e"],
+Cell[CellGroupData[{
+Cell[22107, 568, 3795, 105, 388, "Input",ExpressionUUID->"95b51e8c-fe2f-4246-a02e-cdb69b2dcb6c"],
+Cell[25905, 675, 9050, 192, 397, "Output",ExpressionUUID->"f6ddcc53-e82b-4aa4-b94c-6d34227c2507"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35004, 873, 180, 3, 67, "Section",ExpressionUUID->"cc206608-92ef-4a50-aa01-e584b48aa6dc"],
+Cell[CellGroupData[{
+Cell[35209, 880, 1785, 49, 199, "Input",ExpressionUUID->"e37f91be-e066-41ed-b72b-f4a7bc1d92e1"],
+Cell[36997, 931, 2551, 54, 388, "Output",ExpressionUUID->"63a25ad1-0c0d-4348-8535-2f1abb1a7bf5"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39597, 991, 225, 4, 67, "Section",ExpressionUUID->"e653c956-e7eb-4b48-b82e-d60d13afd00e"],
+Cell[CellGroupData[{
+Cell[39847, 999, 2848, 78, 304, "Input",ExpressionUUID->"fefdbf8b-ad11-425a-a929-686881dc29e9"],
+Cell[42698, 1079, 4954, 105, 385, "Output",ExpressionUUID->"373dc158-b358-4a10-b3b4-66e943fae3ee"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[47701, 1190, 156, 3, 67, "Section",ExpressionUUID->"8ddb7eba-9453-4a00-bd8e-8862bee31025"],
+Cell[CellGroupData[{
+Cell[47882, 1197, 1697, 51, 115, "Input",ExpressionUUID->"34c03870-6327-47a9-ae1e-db59304480c1"],
+Cell[49582, 1250, 2247, 47, 387, "Output",ExpressionUUID->"1d1fa3ec-fb57-47f0-b46c-36721459b2de"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[51866, 1302, 1117, 33, 73, "Input",ExpressionUUID->"e1040209-5381-40da-9fad-a3bd09d001e1"],
+Cell[52986, 1337, 1140, 24, 387, "Output",ExpressionUUID->"b8088ecf-65a5-4ec3-b369-4d9d974d0517"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[54163, 1366, 1879, 53, 136, "Input",ExpressionUUID->"83d2f39d-6e32-4cc8-9764-01b11b292eb7"],
+Cell[56045, 1421, 2552, 53, 376, "Output",ExpressionUUID->"6e6bd5e7-893b-46d2-9950-697e48e1ff26"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[58634, 1479, 1735, 47, 178, "Input",ExpressionUUID->"0f9a7d1f-2c83-40f7-92d0-b02d5ac22fb8"],
+Cell[60372, 1528, 2728, 55, 378, "Output",ExpressionUUID->"298b89f4-9523-4a8e-8fb5-8b11efb604a6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63137, 1588, 1630, 45, 178, "Input",ExpressionUUID->"e37d334c-be87-4221-a71d-8ec58cad608c"],
+Cell[64770, 1635, 2475, 51, 377, "Output",ExpressionUUID->"ea388c4a-8a87-4017-8cd0-791f40a53ebe"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[67282, 1691, 1566, 44, 178, "Input",ExpressionUUID->"6fb57f35-fc75-4017-8868-5c8631719ab1"],
+Cell[68851, 1737, 2499, 52, 390, "Output",ExpressionUUID->"80f721e7-595a-4203-b139-506a9ac611fb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[71387, 1794, 1444, 41, 157, "Input",ExpressionUUID->"f2ea72ae-1d7c-463c-b3ea-fd085cb70c7c"],
+Cell[72834, 1837, 2511, 52, 393, "Output",ExpressionUUID->"1189c1b7-c737-4b95-b7f0-04ba7630d38d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[75382, 1894, 1448, 41, 157, "Input",ExpressionUUID->"a73b8c9c-cc95-49ba-95b1-f62281765ae6"],
+Cell[76833, 1937, 2518, 52, 392, "Output",ExpressionUUID->"1cfa459b-3bc8-4e31-b42c-82c38fd5814f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[79388, 1994, 1920, 56, 199, "Input",ExpressionUUID->"21dce34e-fd54-4d15-a195-8b439730952b"],
+Cell[81311, 2052, 2557, 53, 389, "Output",ExpressionUUID->"8fa61143-6d33-4bc6-b33b-f1f04d5b6193"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[83905, 2110, 2369, 69, 241, "Input",ExpressionUUID->"510e8400-f4a0-49be-a937-7f05890513c3"],
+Cell[86277, 2181, 3476, 73, 392, "Output",ExpressionUUID->"b4a12251-a09b-450a-91ff-00340c91de47"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[89790, 2259, 2493, 71, 262, "Input",ExpressionUUID->"dc2493c0-a881-413d-9ed0-05c72a3e8ebc"],
+Cell[92286, 2332, 2240, 48, 388, "Output",ExpressionUUID->"86cf00af-98a8-4ed6-8540-f5c0a567cced"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[94563, 2385, 2614, 72, 283, "Input",ExpressionUUID->"542d30a7-6454-46a3-8d4a-e1be0e980671"],
+Cell[97180, 2459, 2424, 49, 391, "Output",ExpressionUUID->"efe793d7-7815-45c5-8329-a074e8136b5b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[99641, 2513, 2420, 66, 115, "Input",ExpressionUUID->"1e45a26a-53b2-4346-a2e4-fa65c4a66a54"],
+Cell[102064, 2581, 11562, 218, 376, "Output",ExpressionUUID->"23a58084-5ee4-40fb-9f9b-8fc58a91a58b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[113663, 2804, 2262, 66, 136, "Input",ExpressionUUID->"8484b098-8595-47cd-a147-b123e57356be"],
+Cell[115928, 2872, 11209, 208, 376, "Output",ExpressionUUID->"72095bd5-baa0-41c1-aadf-bca7f354a6b0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[127174, 3085, 2128, 62, 115, "Input",ExpressionUUID->"c149658a-f04f-42dc-97d3-c9abb18ca04b"],
+Cell[129305, 3149, 11122, 210, 376, "Output",ExpressionUUID->"6569ad32-2113-40f9-95a7-379e16312c3c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[140464, 3364, 1992, 58, 115, "Input",ExpressionUUID->"8d00a8bd-1d39-4a5c-8bb2-480f657d5f19"],
+Cell[142459, 3424, 2335, 53, 376, "Output",ExpressionUUID->"0d5e9ff3-6c07-403d-9510-d3301cf1b327"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[144831, 3482, 2011, 58, 115, "Input",ExpressionUUID->"a66f33c7-5c05-4535-97f9-7289fcdf7209"],
+Cell[146845, 3542, 2312, 53, 356, "Output",ExpressionUUID->"ecdb8d99-b799-4809-acc3-8a9cc7f2b247"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
