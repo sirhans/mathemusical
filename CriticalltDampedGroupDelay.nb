@@ -1,0 +1,603 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     25311,        595]
+NotebookOptionsPosition[     24867,        578]
+NotebookOutlinePosition[     25223,        594]
+CellTagsIndexPosition[     25180,        591]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"BiquadTF", "[", 
+    RowBox[{
+    "z_", ",", "a0_", ",", "a1_", ",", "a2_", ",", "b0_", ",", "b1_", ",", 
+     "b2_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"b0", "/", "a0"}], ")"}], " ", 
+       RowBox[{"z", "^", "2"}]}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"b1", "/", "a0"}], ")"}], " ", "z"}], " ", "+", " ", 
+      RowBox[{"(", 
+       RowBox[{"b2", "/", "a0"}], ")"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"1", " ", 
+       RowBox[{"z", "^", "2"}]}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"a1", "/", "a0"}], ")"}], " ", "z"}], " ", "+", " ", 
+      RowBox[{"(", 
+       RowBox[{"a2", "/", "a0"}], ")"}]}], ")"}]}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"VariableQLowpass", "[", 
+    RowBox[{"z_", ",", "Q_", ",", "\[Omega]c_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "a0", ",", "a1", ",", "a2", ",", "b0", ",", "b1", ",", "b2", ",", 
+       "\[Gamma]"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"\[Gamma]", " ", "=", " ", 
+       RowBox[{"Tan", "[", 
+        RowBox[{"\[Omega]c", "/", "2"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"a0", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"Q", " ", 
+         RowBox[{"\[Gamma]", "^", "2"}]}], " ", "+", " ", "\[Gamma]", " ", 
+        "+", " ", "Q"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"b0", " ", "=", " ", 
+       RowBox[{"Q", " ", 
+        RowBox[{"\[Gamma]", "^", "2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"b1", " ", "=", " ", 
+       RowBox[{"2", " ", "Q", " ", 
+        RowBox[{"\[Gamma]", "^", "2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"b2", " ", "=", " ", 
+       RowBox[{"Q", " ", 
+        RowBox[{"\[Gamma]", "^", "2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"a1", " ", "=", " ", 
+       RowBox[{"2", " ", "Q", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"\[Gamma]", "^", "2"}], " ", "-", " ", "1"}], ")"}]}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"a2", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"Q", " ", 
+         RowBox[{"\[Gamma]", "^", "2"}]}], " ", "-", " ", "\[Gamma]", " ", 
+        "+", " ", "Q"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      
+      RowBox[{"(*", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"a0", " ", "/=", " ", "a0"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"b0", " ", "/=", " ", "a0"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"b1", " ", "/=", " ", "a0"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"b2", " ", "/=", " ", "a0"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"a1", " ", "/=", " ", "a0"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"a2", " ", "/=", " ", "a0"}], ";"}], "\[IndentingNewLine]", 
+       "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"BiquadTF", "[", 
+       RowBox[{
+       "z", ",", "a0", ",", "a1", ",", " ", "a2", ",", " ", "b0", ",", " ", 
+        "b1", ",", " ", "b2"}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GroupDelayLowpassQ", "[", 
+    RowBox[{"\[Omega]_", ",", "Q_", ",", "\[Omega]c_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "b0", ",", " ", "b1", ",", " ", "b2", ",", " ", "a0", ",", "a1", ",", 
+       " ", "a2", ",", "\[Gamma]"}], "}"}], ",", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"\[Gamma]", " ", "=", " ", 
+       RowBox[{"Tan", "[", 
+        RowBox[{"\[Omega]c", "/", "2"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"a0", " ", "=", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Q", " ", 
+          RowBox[{"\[Gamma]", "^", "2"}]}], " ", "+", " ", "\[Gamma]", " ", 
+         "+", " ", "Q"}], ")"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"b0", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Q", " ", 
+          RowBox[{"\[Gamma]", "^", "2"}]}], ")"}], "/", "a0"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"b1", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", " ", "Q", " ", 
+          RowBox[{"\[Gamma]", "^", "2"}]}], ")"}], "/", "a0"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"b2", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Q", " ", 
+          RowBox[{"\[Gamma]", "^", "2"}]}], ")"}], "/", "a0"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"a1", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", " ", "Q", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"\[Gamma]", "^", "2"}], " ", "-", " ", "1"}], ")"}]}], 
+         ")"}], "/", "a0"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"a2", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Q", " ", 
+           RowBox[{"\[Gamma]", "^", "2"}]}], " ", "-", " ", "\[Gamma]", " ", 
+          "+", " ", "Q"}], ")"}], "/", "a0"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"b1", "^", "2"}], "+", 
+           RowBox[{"2", "*", 
+            RowBox[{"b2", "^", "2"}]}], "+", 
+           RowBox[{"b1", "*", 
+            RowBox[{"(", 
+             RowBox[{"1", "+", 
+              RowBox[{"3", "*", "b2"}]}], ")"}], "*", 
+            RowBox[{"Cos", "[", "\[Omega]", "]"}]}], "+", 
+           RowBox[{"2", "*", "b2", "*", 
+            RowBox[{"Cos", "[", 
+             RowBox[{"2", "*", "\[Omega]"}], "]"}]}]}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"b1", "^", "2"}], "+", 
+           RowBox[{"b2", "^", "2"}], "+", 
+           RowBox[{"2", "*", "b1", "*", 
+            RowBox[{"(", 
+             RowBox[{"1", "+", "b2"}], ")"}], "*", 
+            RowBox[{"Cos", "[", "\[Omega]", "]"}]}], "+", 
+           RowBox[{"2", "*", "b2", "*", 
+            RowBox[{"Cos", "[", 
+             RowBox[{"2", "*", "\[Omega]"}], "]"}]}]}], ")"}]}], ")"}], " ", 
+       "-", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a1", "^", "2"}], "+", 
+           RowBox[{"2", "*", 
+            RowBox[{"a2", "^", "2"}]}], "+", 
+           RowBox[{"a1", "*", 
+            RowBox[{"(", 
+             RowBox[{"1", "+", 
+              RowBox[{"3", "*", "a2"}]}], ")"}], "*", 
+            RowBox[{"Cos", "[", "\[Omega]", "]"}]}], "+", 
+           RowBox[{"2", "*", "a2", "*", 
+            RowBox[{"Cos", "[", 
+             RowBox[{"2", "*", "\[Omega]"}], "]"}]}]}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"a1", "^", "2"}], "+", 
+           RowBox[{"a2", "^", "2"}], "+", 
+           RowBox[{"2", "*", "a1", "*", 
+            RowBox[{"(", 
+             RowBox[{"1", "+", "a2"}], ")"}], "*", 
+            RowBox[{"Cos", "[", "\[Omega]", "]"}]}], "+", 
+           RowBox[{"2", "*", "a2", "*", 
+            RowBox[{"Cos", "[", 
+             RowBox[{"2", "*", "\[Omega]"}], "]"}]}]}], ")"}]}], ")"}]}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"zz", "[", "\[Omega]_", "]"}], ":=", 
+   RowBox[{"\[ExponentialE]", "^", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "\[ImaginaryI]"}], " ", "\[Omega]"}], ")"}]}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"GraphicsColumn", "[", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"LogLogPlot", "[", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{"VariableQLowpass", "[", 
+            RowBox[{
+             RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.5", ",", 
+             "\[Omega]c"}], "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0.0001", ",", "\[Pi]"}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"0.01", ",", "1"}], "}"}]}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"LogLogPlot", "[", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{"VariableQLowpass", "[", 
+            RowBox[{
+             RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.58", ",", 
+             "\[Omega]c"}], "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0.0001", ",", "\[Pi]"}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"0.01", ",", "1"}], "}"}]}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"LogLogPlot", "[", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{
+            RowBox[{"VariableQLowpass", "[", 
+             RowBox[{
+              RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.5", ",", 
+              RowBox[{"2", "\[Omega]c"}]}], "]"}], 
+            RowBox[{"VariableQLowpass", "[", 
+             RowBox[{
+              RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.5", ",", 
+              RowBox[{"2", "\[Omega]c"}]}], "]"}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0.0001", ",", "\[Pi]"}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"0.01", ",", "1"}], "}"}]}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"LogLogPlot", "[", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{
+            RowBox[{"VariableQLowpass", "[", 
+             RowBox[{
+              RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.5", ",", 
+              RowBox[{"4", "\[Omega]c"}]}], "]"}], 
+            RowBox[{"VariableQLowpass", "[", 
+             RowBox[{
+              RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.5", ",", 
+              RowBox[{"4", "\[Omega]c"}]}], "]"}], 
+            RowBox[{"VariableQLowpass", "[", 
+             RowBox[{
+              RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.5", ",", 
+              RowBox[{"4", "\[Omega]c"}]}], "]"}], 
+            RowBox[{"VariableQLowpass", "[", 
+             RowBox[{
+              RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.5", ",", 
+              RowBox[{"4", "\[Omega]c"}]}], "]"}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0.0001", ",", "\[Pi]"}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"0.01", ",", "1"}], "}"}]}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", 
+           RowBox[{"Hue", "[", "0", "]"}]}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"LogLogPlot", "[", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{
+            RowBox[{"VariableQLowpass", "[", 
+             RowBox[{
+              RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.58", ",", 
+              RowBox[{"4", "\[Omega]c"}]}], "]"}], 
+            RowBox[{"VariableQLowpass", "[", 
+             RowBox[{
+              RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.58", ",", 
+              RowBox[{"4", "\[Omega]c"}]}], "]"}], 
+            RowBox[{"VariableQLowpass", "[", 
+             RowBox[{
+              RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.58", ",", 
+              RowBox[{"4", "\[Omega]c"}]}], "]"}], 
+            RowBox[{"VariableQLowpass", "[", 
+             RowBox[{
+              RowBox[{"zz", "[", "\[Omega]", "]"}], ",", "0.58", ",", 
+              RowBox[{"4", "\[Omega]c"}]}], "]"}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0.0001", ",", "\[Pi]"}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"0.01", ",", "1"}], "}"}]}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", 
+           RowBox[{"Hue", "[", "0", "]"}]}]}], "]"}]}], "\[IndentingNewLine]",
+        "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"LogLinearPlot", "[", 
+         RowBox[{
+          RowBox[{"GroupDelayLowpassQ", "[", 
+           RowBox[{"\[Omega]", ",", "0.5", ",", "\[Omega]c"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0", ",", "\[Pi]"}], "}"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"LogLinearPlot", "[", 
+         RowBox[{
+          RowBox[{"GroupDelayLowpassQ", "[", 
+           RowBox[{"\[Omega]", ",", "0.58", ",", "\[Omega]c"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0", ",", "\[Pi]"}], "}"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"LogLinearPlot", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.50", ",", 
+             RowBox[{"2", "\[Omega]c"}]}], "]"}], "+", 
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.50", ",", 
+             RowBox[{"2", "\[Omega]c"}]}], "]"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0", ",", "\[Pi]"}], "}"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"LogLinearPlot", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.5", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}], "+", 
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.5", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}], "+", 
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.5", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}], "+", 
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.5", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0", ",", "\[Pi]"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", 
+           RowBox[{"Hue", "[", "0", "]"}]}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"LogLinearPlot", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.58", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}], "+", 
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.58", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}], "+", 
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.58", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}], "+", 
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.58", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0", ",", "\[Pi]"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", 
+           RowBox[{"Hue", "[", "0.1", "]"}]}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"LogLinearPlot", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.7", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}], "+", 
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.7", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}], "+", 
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.7", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}], "+", 
+           RowBox[{"GroupDelayLowpassQ", "[", 
+            RowBox[{"\[Omega]", ",", "0.7", ",", 
+             RowBox[{"4", "\[Omega]c"}]}], "]"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Omega]", ",", "0", ",", "\[Pi]"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", 
+           RowBox[{"Hue", "[", "0.2", "]"}]}]}], "]"}]}], 
+       "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}], "]"}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Omega]c", ",", 
+       RowBox[{"\[Pi]", "/", "32"}]}], "}"}], ",", "0.0001", ",", 
+     RowBox[{"\[Pi]", "-", "0.0001"}]}], "}"}]}], "\[IndentingNewLine]", 
+  "]"}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBmIQLTDja7+03BvHX3xnZoFohUsxS0G0aqb3cRDdHON3
+G0Tny+16BaJPP7v1BUR/KE39CqJ9b6v8BtFNf5NFZID0huPpUiC64F+FDIjO
+OmyiCKKt7p9QBdE//r7WBtFCC4/ogGilIjcjEM0nesoERCdYV1iC+YK9fiD6
+5InVoSA64ui5WBCttitvNYh+pLN8DYjm+shXLAuyP9kETJv+mVkNooM+rmoG
+0VquQbtAdEfIq30gepfPquMg2rjD4wuIvmdu8QNEn5CwZ5QD0oHfSyRBdE5e
+jBSIrsvhlQfRX95fUgLRAGYXgm0=
+  "],
+ CellLabel->
+  "In[395]:=",ExpressionUUID->"5b228a2b-e15e-4b1b-80dc-1235af84c158"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Omega]c$$ = Rational[1, 32] Pi, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Omega]c$$], Rational[1, 32] Pi}, 0.0001, 
+      3.141492653589793}}, Typeset`size$$ = {360., {210., 214.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Omega]c$780720$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Omega]c$$ = Rational[1, 32] Pi}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Omega]c$$, $CellContext`\[Omega]c$780720$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> GraphicsColumn[{
+         Show[
+          LogLogPlot[
+           Abs[
+            $CellContext`VariableQLowpass[
+             $CellContext`zz[$CellContext`\[Omega]], 
+             0.5, $CellContext`\[Omega]c$$]], {$CellContext`\[Omega], 0.0001, 
+            Pi}, PlotRange -> {0.01, 1}], 
+          LogLogPlot[
+           Abs[
+            $CellContext`VariableQLowpass[
+             $CellContext`zz[$CellContext`\[Omega]], 
+             0.58, $CellContext`\[Omega]c$$]], {$CellContext`\[Omega], 0.0001,
+             Pi}, PlotRange -> {0.01, 1}], 
+          LogLogPlot[
+           Abs[$CellContext`VariableQLowpass[
+              $CellContext`zz[$CellContext`\[Omega]], 0.5, 
+              2 $CellContext`\[Omega]c$$] $CellContext`VariableQLowpass[
+              $CellContext`zz[$CellContext`\[Omega]], 0.5, 
+              2 $CellContext`\[Omega]c$$]], {$CellContext`\[Omega], 0.0001, 
+            Pi}, PlotRange -> {0.01, 1}], 
+          LogLogPlot[
+           Abs[$CellContext`VariableQLowpass[
+              $CellContext`zz[$CellContext`\[Omega]], 0.5, 
+              4 $CellContext`\[Omega]c$$] $CellContext`VariableQLowpass[
+              $CellContext`zz[$CellContext`\[Omega]], 0.5, 
+              4 $CellContext`\[Omega]c$$] $CellContext`VariableQLowpass[
+              $CellContext`zz[$CellContext`\[Omega]], 0.5, 
+              4 $CellContext`\[Omega]c$$] $CellContext`VariableQLowpass[
+              $CellContext`zz[$CellContext`\[Omega]], 0.5, 
+              4 $CellContext`\[Omega]c$$]], {$CellContext`\[Omega], 0.0001, 
+            Pi}, PlotRange -> {0.01, 1}, PlotStyle -> Hue[0]], 
+          LogLogPlot[
+           Abs[$CellContext`VariableQLowpass[
+              $CellContext`zz[$CellContext`\[Omega]], 0.58, 
+              4 $CellContext`\[Omega]c$$] $CellContext`VariableQLowpass[
+              $CellContext`zz[$CellContext`\[Omega]], 0.58, 
+              4 $CellContext`\[Omega]c$$] $CellContext`VariableQLowpass[
+              $CellContext`zz[$CellContext`\[Omega]], 0.58, 
+              4 $CellContext`\[Omega]c$$] $CellContext`VariableQLowpass[
+              $CellContext`zz[$CellContext`\[Omega]], 0.58, 
+              4 $CellContext`\[Omega]c$$]], {$CellContext`\[Omega], 0.0001, 
+            Pi}, PlotRange -> {0.01, 1}, PlotStyle -> Hue[0]]], 
+         Show[
+          LogLinearPlot[
+           $CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 
+            0.5, $CellContext`\[Omega]c$$], {$CellContext`\[Omega], 0, Pi}], 
+          LogLinearPlot[
+           $CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 
+            0.58, $CellContext`\[Omega]c$$], {$CellContext`\[Omega], 0, Pi}], 
+          
+          
+          LogLinearPlot[$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega],
+              0.5, 2 $CellContext`\[Omega]c$$] + \
+$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 0.5, 
+             2 $CellContext`\[Omega]c$$], {$CellContext`\[Omega], 0, Pi}], 
+          
+          LogLinearPlot[$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega],
+              0.5, 4 $CellContext`\[Omega]c$$] + \
+$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 0.5, 
+             4 $CellContext`\[Omega]c$$] + \
+$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 0.5, 
+             4 $CellContext`\[Omega]c$$] + \
+$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 0.5, 
+             4 $CellContext`\[Omega]c$$], {$CellContext`\[Omega], 0, Pi}, 
+           PlotStyle -> Hue[0]], 
+          
+          LogLinearPlot[$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega],
+              0.58, 4 $CellContext`\[Omega]c$$] + \
+$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 0.58, 
+             4 $CellContext`\[Omega]c$$] + \
+$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 0.58, 
+             4 $CellContext`\[Omega]c$$] + \
+$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 0.58, 
+             4 $CellContext`\[Omega]c$$], {$CellContext`\[Omega], 0, Pi}, 
+           PlotStyle -> Hue[0.1]], 
+          
+          LogLinearPlot[$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega],
+              0.7, 4 $CellContext`\[Omega]c$$] + \
+$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 0.7, 
+             4 $CellContext`\[Omega]c$$] + \
+$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 0.7, 
+             4 $CellContext`\[Omega]c$$] + \
+$CellContext`GroupDelayLowpassQ[$CellContext`\[Omega], 0.7, 
+             4 $CellContext`\[Omega]c$$], {$CellContext`\[Omega], 0, Pi}, 
+           PlotStyle -> Hue[0.2]]]}], 
+      "Specifications" :> {{{$CellContext`\[Omega]c$$, Rational[1, 32] Pi}, 
+         0.0001, 3.141492653589793}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{405., {255., 261.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7738821013228693`*^9, 3.77388215688393*^9}, {
+   3.77388227393622*^9, 3.7738822838919888`*^9}, 3.773882317534019*^9, {
+   3.773882380466304*^9, 3.773882410785915*^9}, {3.773882440920416*^9, 
+   3.7738825318576193`*^9}, {3.773882580109133*^9, 3.7738826017338552`*^9}, {
+   3.7738826345431633`*^9, 3.773882670971068*^9}, 3.7738827269879093`*^9, {
+   3.7738827768903303`*^9, 3.77388279086215*^9}, {3.773882864012011*^9, 
+   3.773882886745611*^9}, {3.7738829312609243`*^9, 3.773882997174575*^9}, 
+   3.773885339486175*^9, {3.773885463613597*^9, 3.7738854698487864`*^9}, {
+   3.773885915986188*^9, 3.773885944701219*^9}, {3.773886022526865*^9, 
+   3.773886137846656*^9}, {3.773886174087035*^9, 3.773886226833765*^9}, 
+   3.773886267005631*^9, {3.773886309933806*^9, 3.773886327885881*^9}, 
+   3.773886371097526*^9, {3.773886410460224*^9, 3.77388647738735*^9}, {
+   3.7738866479990683`*^9, 3.77388667632441*^9}, {3.773886730819421*^9, 
+   3.773886743964283*^9}},
+ CellLabel->
+  "Out[399]=",ExpressionUUID->"505112fe-4ff0-4869-a0af-c2bef2d5ca61"]
+}, Open  ]]
+},
+WindowSize->{1010, 911},
+WindowMargins->{{193, Automatic}, {Automatic, 10}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 17034, 417, 1459, "Input",ExpressionUUID->"5b228a2b-e15e-4b1b-80dc-1235af84c158"],
+Cell[17617, 441, 7234, 134, 535, "Output",ExpressionUUID->"505112fe-4ff0-4869-a0af-c2bef2d5ca61"]
+}, Open  ]]
+}
+]
+*)
+
